@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.primary-gris {
+    font-family: 'acier-bat-gris', sans-serif;
+}
+
+.primary-outline {
+    font-family: 'acier-bat-outline', sans-serif;
+}
+
+.primary-solid {
+    font-family: 'acier-bat-solid', sans-serif;
+}
+
+.secondary-secular-one {
+    font-family: 'Secular One', sans-serif;
+}
+
+.open {
+    transform: rotate(-180deg);
+    transition: all 350ms ease-in-out;
+}
+
+.close {
+    transform: rotate(0deg);
+    transition: all 350ms ease-in-out;
+}
+
+.underline-hover-effect {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .underline-hover-effect::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0.75rem;
+    background-color: #43B64Fdd;
+    transition: width 0.25s ease-out;
+  }
+  .underline-hover-effect:hover::before {
+    width: 100%;
+  }
+
+@layer utilities {
+    .top-bun {
+        @apply before:relative before:bottom-2 before:block before:h-[3px] before:w-6 before:bg-[#43B64F] before:content-[""] before:ease-in before:rounded-md
+    }
+
+    .bottom-bun {
+        @apply after:relative after:top-1 after:block after:h-[3px] after:w-6 after:bg-[#43B64F] after:content-[""] after:ease-in after:rounded-md
+    }
+    
+    .patty {
+        @apply block h-[3px] w-4 bg-[#43B64F]  ease-in duration-300 rounded-md
+    }
+
+    .top-45 {
+        @apply top-bun before:rotate-45 before:w-8 before:top-1
+    }
+
+    .bottom-45 {
+        @apply bottom-bun after:rotate-[-45deg] after:top-0 after:w-8
+    }
+
+    .text-primary {
+        @apply text-[#43B64F]
+    }
+
+    .text-secondary {
+        @apply text-[#8FD697]
+    }
+
+    .text-tertiary {
+        @apply text-[#297031]
+    }
+
+    .bg-primary {
+        @apply bg-[#43B64F]
+    }
+
+    .bg-secondary {
+        @apply bg-[#8FD697]
+    }
+
+    .bg-tertiary {
+        @apply bg-[#297031]
+    }
+
+    .border-primary {
+        @apply border-[#43B64F]
+    }
+
+    .border-secondary {
+        @apply border-[#8FD697]
+    }
+
+    .border-tertiary {
+        @apply border-[#297031]
+    }
+}
+
+@layer components {
+    .hamburger {
+        @apply top-bun bottom-bun patty
+    }
+
+    .card {
+        @apply border-primary my-6  mx-auto flex flex-col justify-between min-w-[280px] gap-2
+            rounded-3xl border border-solid p-6 bg-[#F4FBF5] shadow-lg
+    }
+}
