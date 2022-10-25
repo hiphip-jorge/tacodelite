@@ -28,24 +28,25 @@
     transition: all 350ms ease-in-out;
 }
 
-.underline-hover-effect {
-    display: inline-block;
+.underline-effect {
     position: relative;
-  }
-  
-  .underline-hover-effect::before {
+}
+
+.underline-effect::before {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0;
     height: 0.75rem;
     background-color: #43B64Fdd;
-    transition: width 0.25s ease-out;
-  }
-  .underline-hover-effect:hover::before {
+    width: 0;
+    transition: width 0.8s ease-in-out;
+    animation-delay: 2s;
+}
+
+.in--view::before {
     width: 100%;
-  }
+}
 
 @layer utilities {
     .top-bun {
@@ -111,7 +112,7 @@
     }
 
     .card {
-        @apply border-primary my-6  mx-auto flex flex-col justify-between min-w-[280px] gap-2
+        @apply border-secondary my-6  mx-auto flex flex-col justify-between min-w-[280px] gap-2
             rounded-3xl border border-solid p-6 bg-[#F4FBF5] shadow-lg
     }
 }

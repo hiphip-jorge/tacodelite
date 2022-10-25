@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { category } from "~/routes";
 import { isInViewport } from "~/utils";
 
@@ -7,31 +7,21 @@ import Card from "~/components/card";
 type Props = { header: string; categories: Array<category> };
 
 const Menu = ({ header, categories }: Props) => {
-  let elInView: string | undefined = "";
-
-  useEffect(() => {
-    const elIds = categories.map((category) => category.name.toLowerCase());
-
-    document.addEventListener("scroll", () => {
-      elInView = findElInView(elIds);
-      console.log("elInView :>> ", elInView);
-    });
-
-    return document.removeEventListener("scroll", () => {
-      elInView = findElInView(elIds);
-    });
-  }, []);
+  const categoryRefs = categories.map(() => {
+    return useInView({ threshold: 1, rootMargin: "-100px 0px -250px 0px" });
+  });
 
   return (
     <section className="my-8">
-      <h1 className="primary-outline text-primary text-center text-6xl">
+      <h1 className="primary-outline text-primary  text-center text-6xl">
         {header}
       </h1>
-      {categories.map((category) => (
+      {categories.map((category, idx) => (
         <div id={category.name.toLowerCase()} key={category.name}>
           <h1
-            className={`text-tertiary secondary-secular-one ml-4 mt-4 text-4xl ${
-              elInView === category.name ? "underline-hover-effect" : ""
+            ref={categoryRefs[idx].ref}
+            className={`text-tertiary secondary-secular-one underline-effect ml-4 mt-4 w-fit text-4xl ${
+              categoryRefs[idx].inView && "in--view"
             }`}
           >
             {category.name}
@@ -46,12 +36,3 @@ const Menu = ({ header, categories }: Props) => {
 };
 
 export default Menu;
-
-const findElInView = (elList: string[]) => {
-  const el = elList.find((el) =>
-    isInViewport(document.getElementById(el).firstElementChild)
-  );
-
-  console.log("el :>> ", el);
-  return el;
-};
