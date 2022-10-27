@@ -1,10 +1,13 @@
 import { useInView } from "react-intersection-observer";
 import { category } from "~/routes";
-import { isInViewport } from "~/utils";
 
 import Card from "~/components/card";
 
 type Props = { header: string; categories: Array<category> };
+
+// TODO:
+// [] animate: implement slide up animation for cards
+// [X] styling: add depth to cards
 
 const Menu = ({ header, categories }: Props) => {
   const categoryRefs = categories.map(() => {
@@ -26,9 +29,19 @@ const Menu = ({ header, categories }: Props) => {
           >
             {category.name}
           </h1>
-          {category.foodItems.map((item, idx) => (
-            <Card id={item.name.replaceAll(" ", "-")} key={idx} item={item} />
-          ))}
+          {category.foodItems.map((item, idx) => {
+            let { ref, inView } = useInView();
+
+            return (
+              <Card
+                id={item.name.replaceAll(" ", "-")}
+                ref={ref}
+                className={inView && "slideInUp"}
+                key={idx}
+                item={item}
+              />
+            );
+          })}
         </div>
       ))}
     </section>

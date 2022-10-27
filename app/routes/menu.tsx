@@ -20,7 +20,6 @@ export const loader: LoaderFunction = async () => {
 
 const Menu = () => {
   const categories = useLoaderData<loaderData>();
-  console.log('categories :>> ', categories);
 
   return (
     <div>

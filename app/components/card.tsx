@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { menu_arrow } from "~/assets/svg";
 
 type item = {
@@ -10,29 +11,48 @@ type item = {
 type Props = {
   item: item;
   id: string;
+  className?: false | string;
+  ref?: (node?: Element | null | undefined) => void;
 };
 
-const Card = ({ item, id }: Props) => {
-  const [open, setOpen] = useState(false);
+const Card = ({ item, id, className }: Props) => {
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className="card" id={id}>
-      <div className="flex items-center justify-between">
+    <motion.div
+      className={"card" + " " + className}
+      id={id}
+      layout
+      transition={{ layout: { duration: 0.25, type: "spring" } }}
+    >
+      <motion.div
+        className="flex items-center justify-between"
+        layout="position"
+      >
         <h3 className="primary-solid text-tertiary text-2xl leading-6">
           {item.name}
         </h3>
         <button
-          className={`h-fit ${open ? "open" : "close"}`}
+          className={`h-fit ${isOpen ? "open" : "close"}`}
           onClick={() => setOpen((prev) => !prev)}
         >
           {menu_arrow}
         </button>
-      </div>
-      {open && <p className="secondary-secular-one">{item.description}</p>}
+      </motion.div>
+      {isOpen && (
+        <motion.p
+          className="secondary-secular-one"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          {item.description}
+        </motion.p>
+      )}
       <p className="secondary-secular-one text-primary text-2xl">
         {"$" + item.price}
       </p>
-    </div>
+    </motion.div>
   );
 };
 

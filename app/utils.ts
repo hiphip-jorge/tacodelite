@@ -45,18 +45,3 @@ export function useMatchesData(
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
-
-// use: checking to see if menu categories are in view
-export const isInViewport = (e: Element | null) => {
-  if (e){
-    const rect = e.getBoundingClientRect();
-
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
-};

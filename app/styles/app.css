@@ -48,6 +48,24 @@
     width: 100%;
 }
 
+.slideInUp {
+    animation-name: slideInUp;
+    animation-duration: 0.5s;
+}
+
+@keyframes slideInUp {
+    from {
+      transform: translate3d(0, 100%, 0);
+      visibility: visible;
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+}
+  
+  
+
 @layer utilities {
     .top-bun {
         @apply before:relative before:bottom-2 before:block before:h-[3px] before:w-6 before:bg-[#43B64F] before:content-[""] before:ease-in before:rounded-md
@@ -112,7 +130,7 @@
     }
 
     .card {
-        @apply border-secondary my-6  mx-auto flex flex-col justify-between min-w-[280px] gap-2
-            rounded-3xl border border-solid p-6 bg-[#F4FBF5] shadow-lg
+        @apply border-[#ccffdd] my-10  mx-auto flex flex-col justify-between min-w-[280px] gap-2
+             border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
     }
 }
