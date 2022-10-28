@@ -2,7 +2,7 @@ import { FoodItem } from "@prisma/client";
 import { prisma } from "~/db.server";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/server-runtime";
-import Header from "~/components/header";
+import Header from "~/components/nav";
 
 type category = { name: String; foodItem: Array<FoodItem> };
 type loaderData = { categories: Array<category> };

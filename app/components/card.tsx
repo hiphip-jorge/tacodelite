@@ -11,37 +11,36 @@ type item = {
 type Props = {
   item: item;
   id: string;
-  className?: false | string;
-  ref?: (node?: Element | null | undefined) => void;
+  className?: string;
 };
 
 const Card = ({ item, id, className }: Props) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <motion.div
-      className={"card" + " " + className}
+    <motion.button
       id={id}
+      className={
+        (className ? className + " " : "") +
+        (isOpen ? "w-[300px] shadow-2xl " : "") +
+        "card"
+      }
       layout
       transition={{ layout: { duration: 0.25, type: "spring" } }}
+      onClick={() => setOpen((prev) => !prev)}
     >
       <motion.div
-        className="flex items-center justify-between"
+        className="flex w-full justify-between gap-4"
         layout="position"
       >
-        <h3 className="primary-solid text-tertiary text-2xl leading-6">
+        <h3 className="primary-solid text-tertiary text-left text-2xl leading-6">
           {item.name}
         </h3>
-        <button
-          className={`h-fit ${isOpen ? "open" : "close"}`}
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          {menu_arrow}
-        </button>
+        <div className={`h-fit mt-1 ${isOpen ? "open" : "close"}`}>{menu_arrow}</div>
       </motion.div>
       {isOpen && (
         <motion.p
-          className="secondary-secular-one"
+          className="secondary-secular-one  text-left"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
@@ -52,7 +51,7 @@ const Card = ({ item, id, className }: Props) => {
       <p className="secondary-secular-one text-primary text-2xl">
         {"$" + item.price}
       </p>
-    </motion.div>
+    </motion.button>
   );
 };
 

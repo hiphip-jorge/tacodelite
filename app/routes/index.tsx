@@ -1,4 +1,3 @@
-import Header from "~/components/header";
 import Button from "~/components/button";
 import catering from "~/assets/catering.png";
 import AboutUs from "~/sections/aboutUs";
@@ -8,6 +7,7 @@ import { FoodItem } from "@prisma/client";
 import { prisma } from "~/db.server";
 import { useLoaderData } from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/server-runtime";
+import Nav from "~/components/nav";
 
 export type category = { name: string; foodItems: Array<FoodItem> };
 
@@ -24,12 +24,10 @@ export const loader: LoaderFunction = async () => {
 
 function Index() {
   const categories = useLoaderData<category[]>();
-  
 
   return (
-    // <div className="bg-[#ECF8EE]">
     <div className="bg-[#ECF8EE]">
-      <Header />
+      <Nav />
       <section className="flex h-[calc(100vh-5rem)] flex-col justify-around py-10">
         <h1 className="primary-outline text-primary text-center text-6xl">
           15th Street

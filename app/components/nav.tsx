@@ -1,23 +1,15 @@
-import React, { useState } from "react";
-import MenuButton from "./menuButton";
-import SideMenu from "./sideMenu";
-import { taco_menu_icon } from "../assets/svg";
+import NavMenu from "~/components/navMenu";
+import logo from "../../media/logo_21.svg";
 
-type Props = {};
-
-const Nav = (props: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const Nav = () => {
   return (
-    <>
-      <MenuButton
-        className="flex h-1/2 w-12 items-center justify-center"
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        {isOpen ? <span className="close" /> : taco_menu_icon}
-      </MenuButton>
-      {/* <SideMenu isOpen={isOpen} /> */}
-    </>
+    <nav className="flex h-20 flex-row items-center justify-between bg-[#F4FBF5] px-8">
+      <figure>
+        <img className="w-12" src={logo} alt="Taco Delite Logo" />
+      </figure>
+      <p className="primary-gris text-primary text-3xl">Taco Delite</p>
+      <NavMenu />
+    </nav>
   );
 };
 

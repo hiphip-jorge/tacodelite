@@ -18,13 +18,17 @@
     font-family: 'Secular One', sans-serif;
 }
 
-.open {
-    transform: rotate(-180deg);
-    transition: all 350ms ease-in-out;
+.close {
+    
 }
 
-.close {
-    transform: rotate(0deg);
+.open {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    background: #43B64F;
+    border-radius: 50%;
+    z-index: 5;
     transition: all 350ms ease-in-out;
 }
 
@@ -130,7 +134,7 @@
     }
 
     .card {
-        @apply border-[#ccffdd] my-10  mx-auto flex flex-col justify-between min-w-[280px] gap-2
+        @apply border-[#ccffdd] my-10  mx-auto flex flex-col justify-between w-[280px] gap-2
              border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
     }
 }
