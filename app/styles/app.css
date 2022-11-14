@@ -18,10 +18,6 @@
     font-family: 'Secular One', sans-serif;
 }
 
-.close {
-    
-}
-
 .open {
     position: fixed;
     width: 48px;
@@ -52,6 +48,7 @@
     width: 100%;
 }
 
+
 .slideInUp {
     animation-name: slideInUp;
     animation-duration: 0.5s;
@@ -67,9 +64,37 @@
       transform: translate3d(0, 0, 0);
     }
 }
-  
-  
 
+.sideMenu-fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 350ms;
+}
+
+.sideMenu-fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 350ms;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+} 
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+} 
+  
 @layer utilities {
     .top-bun {
         @apply before:relative before:bottom-2 before:block before:h-[3px] before:w-6 before:bg-[#43B64F] before:content-[""] before:ease-in before:rounded-md
@@ -136,5 +161,9 @@
     .card {
         @apply border-[#ccffdd] my-10  mx-auto flex flex-col justify-between w-[280px] gap-2
              border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
+    }
+
+    .sideMenu {
+        @apply absolute top-0 bottom-0 left-0 right-0 bg-[#f4fbf588] backdrop-blur-md;
     }
 }

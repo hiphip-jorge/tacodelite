@@ -16,7 +16,10 @@ const Menu = ({ header, categories }: Props) => {
 
   return (
     <section className="my-8">
-      <h1 className="primary-outline text-primary  text-center text-6xl">
+      <h1
+        id={header}
+        className="primary-outline text-primary  text-center text-6xl"
+      >
         {header}
       </h1>
       {categories.map((category, idx) => (
