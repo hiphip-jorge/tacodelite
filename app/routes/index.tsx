@@ -27,7 +27,7 @@ function Index() {
 
   return (
     <div className="bg-[#ECF8EE]">
-      <Nav />
+      <Nav categories={categories} />
       <section className="flex h-[calc(100vh-5rem)] flex-col justify-around py-10">
         <h1 className="primary-outline text-primary text-center text-6xl">
           15th Street

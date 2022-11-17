@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
+import { category } from "~/routes";
 import NavItems from "./navItems";
 import doorDash from "../../media/DoorDash-D.svg";
+import Accordion from "./accordion";
 
 // TODO:
 // [] - add menu subcontent
 // [] - add smooth scroll to jump to items
+// [] - make Accordion open toggle functional
 
 type Props = {
   isOpen: boolean;
+  categories: category[];
 };
 
-const SideMenu = ({ isOpen }: Props) => {
+const doorDashUrl = "https://www.doordash.com";
+const uberEatsUrl = "https://www.ubereats.com";
+
+const SideMenu = ({ isOpen, categories }: Props) => {
   const [fadeOut, setFadeOut] = useState(false);
   const menuClassState = isOpen
     ? "sideMenu-fadeIn"
@@ -29,27 +36,32 @@ const SideMenu = ({ isOpen }: Props) => {
     // wait for fade out animation
     if (!isOpen) {
       setTimeout(() => {
-        document.querySelector(".sideMenu").classList.add("hidden");
+        document.querySelector(".sideMenu")?.classList.add("hidden");
       }, 350);
     }
   }, [isOpen]);
 
   return (
     <aside className={`sideMenu ${menuClassState}`}>
-      <section className="flex h-full w-full flex-col py-20 px-10">
-        {/* <button className="bg-secondary h-16 w-16 self-end rounded-full text-2xl font-bold">
-          X
-        </button> */}
+      <section className="flex h-full w-full flex-col py-24 px-16">
         <NavItems vertical>
-          <li className="flex items-center gap-1">
-            <Link to="/door-dash">place order</Link>
-            {/* <img src={doorDash} alt="Doordash logo" /> */}
-          </li>
-          <li>
-            <Link className="" to="#menu">
-              menu
-            </Link>
-          </li>
+          <Accordion
+            menuH1="place order"
+            subMenu={[
+              { name: "doordash", href: doorDashUrl },
+              { name: "ubereats", href: uberEatsUrl },
+            ]}
+            // primaryColor="tertiary"
+            // isOpen
+          />
+          <Accordion
+            menuH1="menu"
+            subMenu={categories.map((category) => {
+              return { name: category.name, href: "#" + category.name };
+            })}
+            // primaryColor="tertiary"
+            isOpen
+          />
         </NavItems>
       </section>
     </aside>

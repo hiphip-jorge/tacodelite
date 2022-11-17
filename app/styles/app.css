@@ -48,6 +48,28 @@
     width: 100%;
 }
 
+.cancel {
+    position: absolute;
+    right: 32px;
+    top: 24px;
+    width: 32px;
+    height: 32px;
+}
+
+.cancel:before, .cancel:after {
+    position: absolute;
+    left: 15px;
+    content: '';
+    height: 33px;
+    width: 5px;
+    background-color: #000;
+}
+.cancel:before {
+    transform: rotate(45deg);
+}
+.cancel:after {
+    transform: rotate(-45deg);
+}
 
 .slideInUp {
     animation-name: slideInUp;
@@ -164,6 +186,6 @@
     }
 
     .sideMenu {
-        @apply absolute top-0 bottom-0 left-0 right-0 bg-[#f4fbf588] backdrop-blur-md;
+        @apply absolute top-0 bottom-0 left-0 right-0 bg-[#f4fbf595] backdrop-blur-md;
     }
 }

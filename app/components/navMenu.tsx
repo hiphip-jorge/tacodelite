@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import MenuButton from "./menuButton";
 import SideMenu from "./sideMenu";
 import { taco_menu_icon } from "../assets/svg";
+import { category } from "~/routes";
 
-type Props = {};
+type Props = {
+  categories: category[];
+};
 
-const NavMenu = (props: Props) => {
+const NavMenu = ({ categories }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -19,16 +22,16 @@ const NavMenu = (props: Props) => {
   return (
     <>
       <MenuButton
-        className="flex h-1/2 w-12 items-center justify-center"
+        className="flex h-1/2 w-12 items-center justify-center z-10"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {isOpen ? (
-          <span className="open" />
+          <span className="cancel"></span>
         ) : (
-          <span className="close">{taco_menu_icon}</span>
+          <span>{taco_menu_icon}</span>
         )}
       </MenuButton>
-      <SideMenu isOpen={isOpen} />
+      <SideMenu categories={categories} isOpen={isOpen} />
     </>
   );
 };
