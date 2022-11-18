@@ -6,8 +6,8 @@ import doorDash from "../../media/DoorDash-D.svg";
 import Accordion from "./accordion";
 
 // TODO:
-// [] - add menu subcontent
-// [] - add smooth scroll to jump to items
+// [X] - add menu subcontent
+// [X] - add smooth scroll to jump to items
 // [] - make Accordion open toggle functional
 
 type Props = {
@@ -43,7 +43,7 @@ const SideMenu = ({ isOpen, categories }: Props) => {
 
   return (
     <aside className={`sideMenu ${menuClassState}`}>
-      <section className="flex h-full w-full flex-col py-24 px-16">
+      <section className="flex h-full w-full flex-col py-16 px-14">
         <NavItems vertical>
           <Accordion
             menuH1="place order"

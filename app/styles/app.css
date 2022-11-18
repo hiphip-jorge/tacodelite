@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*, html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 .primary-gris {
     font-family: 'acier-bat-gris', sans-serif;
 }
@@ -19,6 +24,11 @@
 }
 
 .open {
+    transform: rotate(-180deg);
+    transition: all 350ms ease-in-out;
+}
+
+/* .open {
     position: fixed;
     width: 48px;
     height: 48px;
@@ -26,7 +36,7 @@
     border-radius: 50%;
     z-index: 5;
     transition: all 350ms ease-in-out;
-}
+} */
 
 .underline-effect {
     position: relative;
