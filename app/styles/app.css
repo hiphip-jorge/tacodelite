@@ -58,12 +58,17 @@
     width: 100%;
 }
 
+.taco {
+    animation: grow-n-shrink 750ms;
+}
+
 .cancel {
     position: absolute;
     right: 32px;
     top: 24px;
     width: 32px;
     height: 32px;
+    animation: grow-n-shrink 750ms;
 }
 
 .cancel:before, .cancel:after {
@@ -79,6 +84,12 @@
 }
 .cancel:after {
     transform: rotate(-45deg);
+}
+
+@keyframes grow-n-shrink {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.25);}
+    100% {transform: scale(1);}
 }
 
 .slideInUp {

@@ -27,7 +27,7 @@ const Menu = ({ header, categories }: Props) => {
           <h1
             id={category.name}
             ref={categoryRefs[idx].ref}
-            className={`text-tertiary secondary-secular-one underline-effect ml-4 mt-4 w-fit text-4xl ${
+            className={`text-tertiary secondary-secular-one underline-effect ml-4 mt-8 w-fit text-4xl ${
               categoryRefs[idx].inView && "in--view"
             }`}
           >

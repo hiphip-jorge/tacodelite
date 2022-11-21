@@ -1,4 +1,4 @@
-import React from "react";
+import {MutableRefObject} from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -10,7 +10,11 @@ const NavItems = ({ children, vertical = false }: Props) => {
     ? "flex flex-col gap-5 text-5xl primary-solid text-primary"
     : "flex-row";
 
-  return <ul className={isVertical}>{children}</ul>;
+  return (
+    <ul className={isVertical}>
+      {children}
+    </ul>
+  );
 };
 
 export default NavItems;

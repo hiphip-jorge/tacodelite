@@ -11,6 +11,10 @@ type Props = {
 const NavMenu = ({ categories }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggle = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
   useEffect(() => {
     if (isOpen) {
       document.body.className = "overflow-hidden";
@@ -22,16 +26,16 @@ const NavMenu = ({ categories }: Props) => {
   return (
     <>
       <MenuButton
-        className="flex h-1/2 w-12 items-center justify-center z-10"
+        className="z-10 flex h-1/2 w-12 items-center justify-center"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {isOpen ? (
           <span className="cancel"></span>
         ) : (
-          <span>{taco_menu_icon}</span>
+          <div className="taco">{taco_menu_icon}</div>
         )}
       </MenuButton>
-      <SideMenu categories={categories} isOpen={isOpen} />
+      <SideMenu categories={categories} isOpen={isOpen} handleClose={toggle} />
     </>
   );
 };
