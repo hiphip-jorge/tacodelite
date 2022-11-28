@@ -1,9 +1,15 @@
 import React from "react";
 
-type Props = {};
+type Props = { header: string };
 
-const Catering = (props: Props) => {
-  return <div>Catering</div>;
+const Catering = ({ header }: Props) => {
+  return (
+    <section className="my-8">
+      <h1 className="primary-outline text-primary text-center text-6xl">
+        {header}
+      </h1>
+    </section>
+  );
 };
 
 export default Catering;

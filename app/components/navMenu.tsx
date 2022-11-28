@@ -30,9 +30,11 @@ const NavMenu = ({ categories }: Props) => {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {isOpen ? (
-          <span className="cancel"></span>
+          <div className="cancel-bg shadow-sm shadow-[#29703175]">
+            <span className="cancel"></span>
+          </div>
         ) : (
-          <div className="taco">{taco_menu_icon}</div>
+          <div className="toggleAnimation">{taco_menu_icon}</div>
         )}
       </MenuButton>
       <SideMenu categories={categories} isOpen={isOpen} handleClose={toggle} />

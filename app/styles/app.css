@@ -38,6 +38,14 @@
     transition: all 350ms ease-in-out;
 } */
 
+button:hover .accordionIcon {
+    fill: #297031;
+}
+
+button:hover .accordionHeader {
+    color: #297031;
+}
+
 .underline-effect {
     position: relative;
 }
@@ -58,37 +66,57 @@
     width: 100%;
 }
 
-.taco {
+.toggleAnimation {
     animation: grow-n-shrink 750ms;
+}
+
+.toggleAnimationSubtle {
+    animation: grow-n-shrink-subtle 750ms;
+}
+
+.cancel-bg {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    background-color: #297031;
+    padding: 1.25rem;
+    border-radius: 1rem;
 }
 
 .cancel {
     position: absolute;
-    right: 32px;
-    top: 24px;
-    width: 32px;
-    height: 32px;
+    right: 8px;
+    top: 8px;
+    width: 24px;
+    height: 24px;
     animation: grow-n-shrink 750ms;
 }
 
 .cancel:before, .cancel:after {
     position: absolute;
-    left: 15px;
+    left: 10px;
     content: '';
-    height: 33px;
+    height: 100%;
     width: 5px;
-    background-color: #000;
+    background-color: #43B64F;
 }
 .cancel:before {
     transform: rotate(45deg);
 }
 .cancel:after {
+    background-color: #8fd697;
     transform: rotate(-45deg);
 }
 
 @keyframes grow-n-shrink {
     0% {transform: scale(1);}
     50% {transform: scale(1.25);}
+    100% {transform: scale(1);}
+}
+
+@keyframes grow-n-shrink-subtle {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
     100% {transform: scale(1);}
 }
 
@@ -208,5 +236,9 @@
 
     .sideMenu {
         @apply absolute top-0 bottom-0 left-0 right-0 bg-[#f4fbf595] backdrop-blur-md;
+    }
+
+    .accordionHeader {
+        @apply h-full w-full rounded-2xl px-4 py-3 pl-0 text-2xl;
     }
 }

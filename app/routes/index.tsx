@@ -2,6 +2,7 @@ import Button from "~/components/button";
 import catering from "~/assets/catering.png";
 import AboutUs from "~/sections/aboutUs";
 import Menu from "~/sections/menu";
+import Catering from "~/sections/catering";
 
 import { FoodItem } from "@prisma/client";
 import { prisma } from "~/db.server";
@@ -53,11 +54,7 @@ function Index() {
       <main className="px-12">
         <AboutUs header="About Us">{aboutUs_p}</AboutUs>
         <Menu header="Menu" categories={categories} />
-        <section className="my-8">
-          <h1 className="primary-outline text-primary text-center text-6xl">
-            Catering
-          </h1>
-        </section>
+        <Catering header="Catering" />
       </main>
       <footer></footer>
     </div>

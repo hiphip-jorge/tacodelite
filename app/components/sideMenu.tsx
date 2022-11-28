@@ -4,6 +4,7 @@ import { category } from "~/routes";
 import NavItems from "./navItems";
 import Accordion from "./accordion";
 import { Action } from "@remix-run/server-runtime/dist/router";
+import { car, utensils } from "~/assets/svg";
 
 // TODO:
 // [X] - add menu subcontent
@@ -60,7 +61,12 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
       <section className="flex h-full w-full flex-col py-16 px-14">
         <NavItems vertical>
           <Accordion
-            menuProps={{ header: "Place Order", func: () => handleActive(0) }}
+            menuProps={{
+              header: "Place Order",
+              color: "#297031",
+              func: () => handleActive(0),
+              icon: car("accordionIcon"),
+            }}
             subMenuProps={{
               items: [
                 { name: "doordash", href: doorDashUrl },
@@ -71,7 +77,12 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
             active={active[0]}
           />
           <Accordion
-            menuProps={{ header: "Menu", func: () => handleActive(1) }}
+            menuProps={{
+              header: "Menu",
+              color: "#297031",
+              func: () => handleActive(1),
+              icon: utensils("accordionIcon"),
+            }}
             subMenuProps={{
               items: categories.map((category) => {
                 return { name: category.name, href: "#" + category.name };

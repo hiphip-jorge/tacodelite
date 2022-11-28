@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { ReactNode } from "react";
 
 type Props = {
-  menuProps: { color?: string; header: string; func?: Function };
+  menuProps: {
+    color?: string;
+    header: string;
+    func?: Function;
+    icon: ReactNode;
+  };
   subMenuProps: {
     color?: string;
     items: {
@@ -22,14 +27,13 @@ const Accordian = ({ menuProps, subMenuProps, active }: Props) => {
   return (
     <section className="flex w-full flex-col gap-2">
       <button
-        onClick={menuProps.func}
-        className="hover:bg-tertiary flex w-4/5 items-center justify-between rounded-2xl text-left duration-300 ease-in-out hover:shadow-md"
+        onClick={() => menuProps.func && menuProps.func()}
+        className={`hover:text-primary flex w-4/5 items-center justify-between gap-6 rounded-2xl text-left duration-300 ease-in-out hover:bg-[#ccffdd] hover:shadow-md ${
+          active ? "toggleAnimationSubtle" : ""
+        }`}
       >
-        <h1
-          className={`hover:text-white ${mColor} h-full w-full rounded-2xl p-6 py-4 text-3xl duration-300 ease-in-out`}
-        >
-          {menuProps.header}
-        </h1>
+        <span className="w-12 px-4 py-3 pr-0">{menuProps.icon}</span>
+        <h1 className={` ${mColor} accordionHeader`}>{menuProps.header}</h1>
       </button>
       {active && (
         <ul className="border-secondary ml-4 flex w-3/5 flex-col border-l-4 px-4 text-lg">
@@ -41,7 +45,7 @@ const Accordian = ({ menuProps, subMenuProps, active }: Props) => {
                   " hover:bg-secondary h-full w-full rounded-md p-2 duration-300 ease-in-out hover:shadow-md"
                 }
                 href={item.href}
-                onClick={subMenuProps.func}
+                onClick={() => subMenuProps.func && subMenuProps.func()}
               >
                 {item.name}
               </a>
