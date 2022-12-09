@@ -27,7 +27,7 @@ function Index() {
   const categories = useLoaderData<category[]>();
 
   return (
-    <div className="bg-[#ECF8EE]">
+    <div className="bg-white">
       <Nav categories={categories} />
       <section className="flex h-[calc(100vh-5rem)] flex-col justify-around py-10">
         <h1 className="primary-outline text-primary text-center text-6xl">
@@ -54,7 +54,7 @@ function Index() {
       <main className="px-12">
         <AboutUs header="About Us">{aboutUs_p}</AboutUs>
         <Menu header="Menu" categories={categories} />
-        <Catering header="Catering" />
+        <Catering header="Cater" subHeader="Tell us about your party"/>
       </main>
       <footer></footer>
     </div>

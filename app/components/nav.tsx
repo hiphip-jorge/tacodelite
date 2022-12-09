@@ -8,7 +8,7 @@ type Props = {
 
 const Nav = ({ categories }: Props) => {
   return (
-    <nav className="flex h-20 flex-row items-center justify-between bg-[#F4FBF5] px-6">
+    <nav className="flex h-20 flex-row items-center justify-between px-6">
       <figure>
         <img className="w-12" src={logo} alt="Taco Delite Logo" />
       </figure>

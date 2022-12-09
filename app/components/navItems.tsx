@@ -7,7 +7,7 @@ type Props = {
 
 const NavItems = ({ children, vertical = false }: Props) => {
   let isVertical = vertical
-    ? "flex flex-col gap-5 text-5xl primary-solid text-primary"
+    ? "flex flex-col gap-3 text-5xl primary-solid text-primary"
     : "flex-row";
 
   return (

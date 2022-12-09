@@ -1,6 +1,10 @@
+/* <!-- Including one css file into other --> */
+@import "../../node_modules/react-datepicker/dist/react-datepicker.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 *, html {
     box-sizing: border-box;
@@ -78,7 +82,7 @@ button:hover .accordionHeader {
     position: absolute;
     top: 20px;
     right: 28px;
-    background-color: #297031;
+    background-color: #8fd697;
     padding: 1.25rem;
     border-radius: 1rem;
 }
@@ -98,13 +102,13 @@ button:hover .accordionHeader {
     content: '';
     height: 100%;
     width: 5px;
-    background-color: #43B64F;
+    background-color: #297031;
 }
 .cancel:before {
     transform: rotate(45deg);
 }
 .cancel:after {
-    background-color: #8fd697;
+    background-color: #43B64F;
     transform: rotate(-45deg);
 }
 

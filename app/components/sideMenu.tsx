@@ -58,14 +58,14 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
 
   return (
     <aside className={`sideMenu ${menuClassState}`}>
-      <section className="flex h-full w-full flex-col py-16 px-14">
+      <section className="flex h-full w-full flex-col py-20 px-8">
         <NavItems vertical>
           <Accordion
             menuProps={{
               header: "Place Order",
               color: "#297031",
               func: () => handleActive(0),
-              icon: car("accordionIcon"),
+              icon: car("accordionIcon fill-[#297031]"),
             }}
             subMenuProps={{
               items: [
@@ -81,7 +81,7 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
               header: "Menu",
               color: "#297031",
               func: () => handleActive(1),
-              icon: utensils("accordionIcon"),
+              icon: utensils("accordionIcon fill-[#297031]"),
             }}
             subMenuProps={{
               items: categories.map((category) => {
