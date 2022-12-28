@@ -1,4 +1,3 @@
-/* <!-- Including one css file into other --> */
 @import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 
 @tailwind base;
@@ -31,16 +30,6 @@
     transform: rotate(-180deg);
     transition: all 350ms ease-in-out;
 }
-
-/* .open {
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    background: #43B64F;
-    border-radius: 50%;
-    z-index: 5;
-    transition: all 350ms ease-in-out;
-} */
 
 button:hover .accordionIcon {
     fill: #297031;
