@@ -1,5 +1,3 @@
-import {MutableRefObject} from "react";
-
 type Props = {
   children: React.ReactNode;
   vertical?: boolean;

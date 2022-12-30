@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
 import React from "react";
-import Card from "~/components/card";
+import Card from "~/components/Card";
 import { menuItem } from "../routes";
 import download from "../../media/download-icon.svg";
 
@@ -8,7 +8,7 @@ const Menu = () => {
   let data = useLoaderData();
   let menu = nodifyMenu(data);
 
-  console.log('menu :>> ', menu);
+  console.log("menu :>> ", menu);
 
   return (
     <main className="secondary-open-sans py-4">

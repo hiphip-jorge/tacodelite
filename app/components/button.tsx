@@ -1,8 +1,7 @@
-import React from "react";
-
 type Props = {
   children: string;
   className?: string;
+  handleClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
   primary?: boolean;
 };
 
@@ -16,6 +15,7 @@ const Button = (props: Props) => {
           : "primary-solid text-primary border-primary hover:bg-secondary border-2 bg-transparent duration-300 hover:border-0 hover:text-white ") +
         props.className
       }
+      onClick={props.handleClick}
     >
       {props.children}
     </button>

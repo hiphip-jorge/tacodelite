@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "@remix-run/react";
 import { category } from "~/routes";
 import NavItems from "./navItems";
-import Accordion from "./accordion";
-import { Action } from "@remix-run/server-runtime/dist/router";
+import Accordion from "./Accordion";
 import { car, utensils } from "~/assets/svg";
 
 // TODO:
@@ -21,7 +19,7 @@ type Props = {
 const doorDashUrl = "https://www.doordash.com";
 const uberEatsUrl = "https://www.ubereats.com";
 
-const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
+const Modal = ({ isOpen, categories, handleClose }: Props) => {
   // active list of accordions; only one active
   const [active, setActive] = useState([false, false]);
   const [fadeOut, setFadeOut] = useState(false);
@@ -42,22 +40,22 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
     });
   };
 
-  useEffect(() => {
-    // set true after the first menu open
-    if (isOpen && !fadeOut) {
-      setFadeOut(true);
-    }
-    // wait for fade out animation
-    if (!isOpen) {
-      setTimeout(() => {
-        document.querySelector(".sideMenu")?.classList.add("hidden");
-        setActive([false, false]);
-      }, 350);
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   // set true after the first menu open
+  //   if (isOpen && !fadeOut) {
+  //     setFadeOut(true);
+  //   }
+  //   // wait for fade out animation
+  //   if (!isOpen) {
+  //     setTimeout(() => {
+  //       document.querySelector(".modalMask")?.classList.add("hidden");
+  //       setActive([false, false]);
+  //     }, 350);
+  //   }
+  // }, [isOpen]);
 
   return (
-    <aside className={`sideMenu ${menuClassState}`}>
+    <aside className={`modalMask ${menuClassState}`}>
       <section className="flex h-full w-full flex-col py-20 px-8">
         <NavItems vertical>
           <Accordion
@@ -97,4 +95,4 @@ const SideMenu = ({ isOpen, categories, handleClose }: Props) => {
   );
 };
 
-export default SideMenu;
+export default Modal;

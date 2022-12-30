@@ -71,7 +71,6 @@ button:hover .accordionHeader {
     position: absolute;
     top: 20px;
     right: 28px;
-    background-color: #8fd697;
     padding: 1.25rem;
     border-radius: 1rem;
 }
@@ -80,8 +79,8 @@ button:hover .accordionHeader {
     position: absolute;
     right: 8px;
     top: 8px;
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
     animation: grow-n-shrink 750ms;
 }
 
@@ -90,14 +89,14 @@ button:hover .accordionHeader {
     left: 10px;
     content: '';
     height: 100%;
-    width: 5px;
-    background-color: #297031;
+    width: 6px;
+    background-color: #000;
 }
 .cancel:before {
     transform: rotate(45deg);
 }
 .cancel:after {
-    background-color: #43B64F;
+    background-color: #888;
     transform: rotate(-45deg);
 }
 
@@ -227,8 +226,8 @@ button:hover .accordionHeader {
              border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
     }
 
-    .sideMenu {
-        @apply absolute top-0 bottom-0 left-0 right-0 bg-[#f4fbf595] backdrop-blur-md;
+    .modalMask {
+        @apply fixed h-full w-full top-0 bottom-0 left-0 right-0 bg-[#f4fbf595] backdrop-blur-md z-20 overflow-auto;
     }
 
     .accordionHeader {

@@ -1,18 +1,26 @@
-import Button from "~/components/button";
-import catering from "~/assets/catering.png";
-import AboutUs from "~/sections/aboutUs";
-import Menu from "~/sections/menu";
-import Catering from "~/sections/catering";
-import Section from "~/components/section";
-
-import { FoodItem } from "@prisma/client";
-import { prisma } from "~/db.server";
+import { useState } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
-import Nav from "~/components/nav";
 import { Form as RemixForm } from "@remix-run/react";
-import DatePicker from "react-datepicker";
-import { useState } from "react";
+// Prisma
+import { prisma } from "~/db.server";
+import { FoodItem } from "@prisma/client";
+// Components
+import Card from "~/components/Card";
+import Button from "~/components/Button";
+import Section from "~/components/Section";
+import IconButton from "~/components/IconButton";
+// Utilities
+import { useInView } from "react-intersection-observer";
+// import DatePicker from "react-datepicker";
+// assets/imgs
+import catering from "~/assets/catering.png";
+import td_building from "~/assets/taco_delite.jpeg";
+import { car, utensils } from "~/assets/svg";
+
+import Catering from "~/sections/catering";
+import { useEffect } from "react";
+import Modal from "~/components/Modal";
 
 export type category = { name: string; foodItems: Array<FoodItem> };
 
@@ -34,8 +42,16 @@ export const loader: LoaderFunction = async () => {
 };
 
 function Index() {
+  const [isOpen, setIsOpen] = useState(false);
+  // const [formStartDate, setFormStartDate] = useState(getValidDate(2));
   const categories = useLoaderData<category[]>();
-  const [formStartDate, setFormStartDate] = useState(getValidDate(2));
+  const categoryRefs = categories.map(() => {
+    return useInView({ threshold: 1, rootMargin: "-100px 0px -250px 0px" });
+  });
+
+  const toggle = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   return (
     <div className="bg-white">
@@ -43,26 +59,95 @@ function Index() {
       <header className="flex h-24 w-full items-center justify-center bg-green-50">
         <p className="primary-gris text-primary text-5xl">Taco Delite</p>
       </header>
-      {/* Hero Section */}
-      <Section header="15th Street" height="h-[calc(100vh-6rem)]">
-        <picture>
-          <img src={catering} className="" alt="plate 1 image" />
-        </picture>
-        <div className="px-12">
-          <h2 className="primary-solid text-tertiary text-[2rem] leading-9">
-            Fresh Everyday.
-          </h2>
-          <h2 className="primary-solid text-primary text-end text-[2rem] leading-9">
-            Real Ingredients.
-          </h2>
-        </div>
-        <div className="mx-auto flex w-fit gap-4">
-          <Button className="h-12 w-32 rounded-[14px]">Menu</Button>
-          <Button className="h-12 w-32 rounded-[14px]" primary>
-            Order
-          </Button>
-        </div>
-      </Section>
+      <main>
+        {/* Hero Section */}
+        <Section header="15th Street" height="h-[calc(100vh-6rem)]">
+          <picture>
+            <img src={catering} alt="plate 1 image" />
+          </picture>
+          <div className="px-12">
+            <h2 className="primary-solid text-tertiary text-[2rem] leading-9">
+              Fresh Everyday.
+            </h2>
+            <h2 className="primary-solid text-primary text-end text-[2rem] leading-9">
+              Real Ingredients.
+            </h2>
+          </div>
+          <div className="mx-auto flex w-fit gap-4">
+            <Button className="h-12 w-32 rounded-[14px]" handleClick={toggle}>
+              Menu
+            </Button>
+            <Button
+              className="h-12 w-32 rounded-[14px]"
+              handleClick={toggle}
+              primary
+            >
+              Order
+            </Button>
+          </div>
+        </Section>
+        {/* Quick Icon Buttons  */}
+        <aside className="sticky top-32 right-full left-4 z-10 float-left flex w-fit flex-col gap-2">
+          <IconButton
+            iconSVG={car("hover:fill-[#43B64Fdd] fill-[#297031]")}
+            handleClick={() => {}}
+          />
+          <div className="bg-secondary h-1 w-full" />
+          <IconButton
+            iconSVG={utensils("hover:fill-[#43B64Fdd] fill-[#297031]")}
+            handleClick={() => {}}
+          />
+        </aside>
+        {/* About Us Section */}
+        <Section header="About Us" hClass="ml-14">
+          <div className="px-16 pl-[calc(4rem-1rem)]">
+            <figure>
+              <img
+                src={td_building}
+                className="my-4 rounded-3xl shadow-lg"
+                alt=""
+              />
+            </figure>
+            <p className="text-tertiary secondary-secular-one text-lg">
+              {aboutUs_p}
+            </p>
+          </div>
+        </Section>
+        {/* Menu Section  */}
+        <Section header="Menu">
+          {categories.map((category, idx) => (
+            <div id={category.name.toLowerCase()} key={category.name}>
+              <h1
+                id={category.name}
+                ref={categoryRefs[idx].ref}
+                className={`text-tertiary secondary-secular-one underline-effect ml-20 mt-8 w-fit text-4xl ${
+                  categoryRefs[idx].inView && "in--view"
+                }`}
+              >
+                {category.name}
+              </h1>
+              {category.foodItems.map((item, idx) => (
+                <Card
+                  id={item.name.replaceAll(" ", "-")}
+                  key={idx}
+                  item={item}
+                />
+              ))}
+            </div>
+          ))}
+        </Section>
+      </main>
+      <footer>
+        <Section header="footer">
+          <div className="h-[1000px]"></div>
+        </Section>
+      </footer>
+      <aside>
+        <button className="fixed top-8 right-8 z-30 h-10 w-10" onClick={toggle}>
+          {isOpen && <span className="cancel"></span>}
+        </button>
+        <Modal categories={categories} isOpen={isOpen} handleClose={toggle} />
+      </aside>
     </div>
   );
 }

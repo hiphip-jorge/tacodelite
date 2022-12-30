@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { category } from "~/routes";
 
-import Card from "~/components/card";
+import Card from "~/components/Card";
 
 type Props = { header: string; categories: Array<category> };
 

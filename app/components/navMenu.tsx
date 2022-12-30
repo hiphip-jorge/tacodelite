@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenuButton from "./menuButton";
-import SideMenu from "./sideMenu";
+import SideMenu from "./Modal";
 import { taco_menu_icon } from "../assets/svg";
 import { category } from "~/routes";
 

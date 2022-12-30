@@ -7,7 +7,7 @@ type Props = {
 
 const IconButton = ({ iconSVG, handleClick }: Props) => {
   return (
-    <button onClick={handleClick} className="flex items-center justify-center p-2">
+    <button onClick={handleClick} className="w-8 flex items-center justify-center p-2">
       {iconSVG}
     </button>
   );
