@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
   
-@layer utilities {
-
+@layer sections {
+    .header {
+        @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24;
+    }
 }
 
 @layer components {

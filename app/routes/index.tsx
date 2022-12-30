@@ -17,6 +17,7 @@ import { useInView } from "react-intersection-observer";
 // assets/imgs
 import catering from "~/assets/catering.png";
 import td_building from "~/assets/taco_delite.jpeg";
+import taco_delite from "~/assets/td-logo_2021.png";
 import { car, utensils } from "~/assets/svg";
 
 import Catering from "~/sections/catering";
@@ -68,10 +69,16 @@ function Index() {
   return (
     <div className="bg-white">
       {/* Taco Delite Header */}
-      <header className="flex h-24 w-full items-center justify-center bg-green-50">
-        <p className="font-primary-gris text-5xl text-green-primary">
-          Taco Delite
-        </p>
+      <header className="header">
+        <p className="font-primary-gris text-5xl text-green-primary">Taco</p>
+        <figure>
+          <img
+            src={taco_delite}
+            alt="taco delite logo"
+            className="w-10 sm:hidden md:inline"
+          />
+        </figure>
+        <p className="font-primary-gris text-5xl text-green-primary">Delite</p>
       </header>
       <main>
         {/* Hero Section */}
