@@ -6,10 +6,11 @@ import { Form as RemixForm } from "@remix-run/react";
 import { prisma } from "~/db.server";
 import { FoodItem } from "@prisma/client";
 // Components
-import Card from "~/components/Card";
 import Button from "~/components/Button";
-import Section from "~/components/Section";
+import Card from "~/components/Card";
 import IconButton from "~/components/IconButton";
+import Modal from "~/components/Modal";
+import Section from "~/components/Section";
 // Utilities
 import { useInView } from "react-intersection-observer";
 // import DatePicker from "react-datepicker";
@@ -19,16 +20,12 @@ import td_building from "~/assets/taco_delite.jpeg";
 import { car, utensils } from "~/assets/svg";
 
 import Catering from "~/sections/catering";
-import { useEffect } from "react";
-import Modal from "~/components/Modal";
+
+const doordash = { name: "doordash", url: "https://www.doordash.com" };
+const ubereats = { name: "ubereats", url: "https://www.ubereats.com" };
 
 export type category = { name: string; foodItems: Array<FoodItem> };
-
-const action: ActionFunction = async ({ request }) => {
-  let formData = await request.formData();
-  let email = formData.get("email");
-  console.log("email", email);
-};
+export type modalContent = { name: string; url: string };
 
 export const loader: LoaderFunction = async () => {
   let categories = await prisma.category.findMany({
@@ -43,14 +40,29 @@ export const loader: LoaderFunction = async () => {
 
 function Index() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentContent, setCurrentContent] = useState<modalContent[]>();
   // const [formStartDate, setFormStartDate] = useState(getValidDate(2));
+
   const categories = useLoaderData<category[]>();
   const categoryRefs = categories.map(() => {
-    return useInView({ threshold: 1, rootMargin: "-100px 0px -250px 0px" });
+    return useInView({ threshold: 1, rootMargin: "0px 0px -250px 0px" });
   });
 
-  const toggle = () => {
+  const toggle = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
     setIsOpen((prevState) => !prevState);
+  };
+
+  const handleMenu = () => {
+    setCurrentContent(
+      categories.map((category) => {
+        return { name: category.name, url: "#" + category.name };
+      })
+    );
+  };
+
+  const handleOrder = () => {
+    setCurrentContent([doordash, ubereats]);
   };
 
   return (
@@ -74,12 +86,21 @@ function Index() {
             </h2>
           </div>
           <div className="mx-auto flex w-fit gap-4">
-            <Button className="h-12 w-32 rounded-[14px]" handleClick={toggle}>
+            <Button
+              className="h-12 w-32 rounded-[14px]"
+              handleClick={(e) => {
+                handleMenu();
+                toggle(e);
+              }}
+            >
               Menu
             </Button>
             <Button
               className="h-12 w-32 rounded-[14px]"
-              handleClick={toggle}
+              handleClick={(e) => {
+                handleOrder();
+                toggle(e);
+              }}
               primary
             >
               Order
@@ -90,12 +111,18 @@ function Index() {
         <aside className="sticky top-32 right-full left-4 z-10 float-left flex w-fit flex-col gap-2">
           <IconButton
             iconSVG={car("hover:fill-[#43B64Fdd] fill-[#297031]")}
-            handleClick={() => {}}
+            handleClick={(e) => {
+              handleOrder();
+              toggle(e);
+            }}
           />
-          <div className="bg-secondary h-1 w-full" />
+          <div className="bg-secondary h-1 w-full rounded-lg" />
           <IconButton
             iconSVG={utensils("hover:fill-[#43B64Fdd] fill-[#297031]")}
-            handleClick={() => {}}
+            handleClick={(e) => {
+              handleMenu();
+              toggle(e);
+            }}
           />
         </aside>
         {/* About Us Section */}
@@ -115,26 +142,28 @@ function Index() {
         </Section>
         {/* Menu Section  */}
         <Section header="Menu">
-          {categories.map((category, idx) => (
-            <div id={category.name.toLowerCase()} key={category.name}>
-              <h1
-                id={category.name}
-                ref={categoryRefs[idx].ref}
-                className={`text-tertiary secondary-secular-one underline-effect ml-20 mt-8 w-fit text-4xl ${
-                  categoryRefs[idx].inView && "in--view"
-                }`}
-              >
-                {category.name}
-              </h1>
-              {category.foodItems.map((item, idx) => (
-                <Card
-                  id={item.name.replaceAll(" ", "-")}
-                  key={idx}
-                  item={item}
-                />
-              ))}
-            </div>
-          ))}
+          <div className="px-16">
+            {categories.map((category, idx) => (
+              <div id={category.name.toLowerCase()} key={category.name}>
+                <h1
+                  id={category.name}
+                  ref={categoryRefs[idx].ref}
+                  className={`text-tertiary secondary-secular-one underline-effect ml-4 mt-8 w-fit text-4xl ${
+                    categoryRefs[idx].inView && "in--view"
+                  }`}
+                >
+                  {category.name}
+                </h1>
+                {category.foodItems.map((item, idx) => (
+                  <Card
+                    id={item.name.replaceAll(" ", "-")}
+                    key={idx}
+                    item={item}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </Section>
       </main>
       <footer>
@@ -142,12 +171,11 @@ function Index() {
           <div className="h-[1000px]"></div>
         </Section>
       </footer>
-      <aside>
-        <button className="fixed top-8 right-8 z-30 h-10 w-10" onClick={toggle}>
-          {isOpen && <span className="cancel"></span>}
-        </button>
-        <Modal categories={categories} isOpen={isOpen} handleClose={toggle} />
-      </aside>
+      <Modal
+        contentList={currentContent}
+        isOpen={isOpen}
+        handleClose={toggle}
+      />
     </div>
   );
 }
@@ -182,33 +210,7 @@ const isWeekday = (date: Date) => {
 };
 
 {
-  /* <Nav categories={categories} />
-<section className="flex h-[calc(100vh-5rem)] flex-col justify-around py-10">
-  <h1 className="primary-outline text-primary text-center text-6xl">
-    15th Street
-  </h1>
-  <picture className="flex justify-between">
-    <img src={catering} className="" alt="plate 1 image" />
-  </picture>
-  <div className="px-12">
-    <h2 className="primary-solid text-tertiary text-[2rem] leading-9">
-      Fresh Everyday.
-    </h2>
-    <h2 className="primary-solid text-primary text-end text-[2rem] leading-9">
-      Real Ingredients.
-    </h2>
-  </div>
-  <div className="mx-auto flex w-fit gap-4">
-    <Button className="h-12 w-32 rounded-[14px]">Menu</Button>
-    <Button className="h-12 w-32 rounded-[14px]" primary>
-      Order
-    </Button>
-  </div>
-</section>
-<main className="px-12">
-  <AboutUs header="About Us">{aboutUs_p}</AboutUs>
-  <Menu header="Menu" categories={categories} />
-  <Catering
+  /* <Catering
     header="Cater"
     subHeader="Just can't get enough? Personalize your order to fit your party."
   >
@@ -275,7 +277,5 @@ const isWeekday = (date: Date) => {
         </button>
       </fieldset>
     </RemixForm>
-  </Catering>
-</main>
-<footer></footer> */
+  </Catering> */
 }

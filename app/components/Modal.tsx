@@ -1,27 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { category } from "~/routes";
-import NavItems from "./navItems";
-import Accordion from "./Accordion";
-import { car, utensils } from "~/assets/svg";
-
-// TODO:
-// [X] - add menu subcontent
-// [X] - add smooth scroll to jump to items
-// [X] - make Accordion open toggle functional
-// []  - fix design
+import { useEffect, useState } from "react";
+import { modalContent } from "~/routes";
 
 type Props = {
   isOpen: boolean;
-  categories: category[];
-  handleClose: Function;
+  contentList: modalContent[] | undefined;
+  handleClose: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
-const doorDashUrl = "https://www.doordash.com";
-const uberEatsUrl = "https://www.ubereats.com";
-
-const Modal = ({ isOpen, categories, handleClose }: Props) => {
-  // active list of accordions; only one active
-  const [active, setActive] = useState([false, false]);
+const Modal = ({ isOpen, contentList, handleClose }: Props) => {
   const [fadeOut, setFadeOut] = useState(false);
   const menuClassState = isOpen
     ? "sideMenu-fadeIn"
@@ -31,66 +17,48 @@ const Modal = ({ isOpen, categories, handleClose }: Props) => {
     ? "hidden"
     : "";
 
-  const handleActive = (pos: number) => {
-    setActive(() => {
-      return active.map(({}, idx) => {
-        // if this accordion is clicked, reverse state, else state is false
-        return idx === pos ? !active[pos] : false;
-      });
-    });
-  };
-
-  // useEffect(() => {
-  //   // set true after the first menu open
-  //   if (isOpen && !fadeOut) {
-  //     setFadeOut(true);
-  //   }
-  //   // wait for fade out animation
-  //   if (!isOpen) {
-  //     setTimeout(() => {
-  //       document.querySelector(".modalMask")?.classList.add("hidden");
-  //       setActive([false, false]);
-  //     }, 350);
-  //   }
-  // }, [isOpen]);
+  useEffect(() => {
+    // set true after the first menu open
+    if (isOpen && !fadeOut) {
+      setFadeOut(true);
+    }
+    // wait for fade out animation
+    if (!isOpen) {
+      setTimeout(() => {
+        document.querySelector(".modalMask")?.classList.add("hidden");
+      }, 350);
+    }
+  }, [isOpen]);
 
   return (
-    <aside className={`modalMask ${menuClassState}`}>
-      <section className="flex h-full w-full flex-col py-20 px-8">
-        <NavItems vertical>
-          <Accordion
-            menuProps={{
-              header: "Place Order",
-              color: "#297031",
-              func: () => handleActive(0),
-              icon: car("accordionIcon fill-[#297031]"),
-            }}
-            subMenuProps={{
-              items: [
-                { name: "doordash", href: doorDashUrl },
-                { name: "ubereats", href: uberEatsUrl },
-              ],
-              func: handleClose,
-            }}
-            active={active[0]}
-          />
-          <Accordion
-            menuProps={{
-              header: "Menu",
-              color: "#297031",
-              func: () => handleActive(1),
-              icon: utensils("accordionIcon fill-[#297031]"),
-            }}
-            subMenuProps={{
-              items: categories.map((category) => {
-                return { name: category.name, href: "#" + category.name };
-              }),
-              func: handleClose,
-            }}
-            active={active[1]}
-          />
-        </NavItems>
-      </section>
+    <aside className={`modalMask ${menuClassState}`} onClick={handleClose}>
+      <div className="modalContainer">
+        <button
+          className="bg-primary animate-grow-n-shrink-subtle absolute -right-6 -top-6 z-30 h-14 w-14 rounded-full p-4"
+          onClick={handleClose}
+        >
+          <div className="h-5/6 w-5/6">
+            {isOpen && <span className="cancel"></span>}
+          </div>
+        </button>
+        <ul className="flex flex-col">
+          {contentList?.map((item, idx) => {
+            return (
+              <li
+                key={idx}
+                className="text-tertiary flex justify-center p-2 after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-8 after:rounded-sm after:bg-green-100 after:last:content-none"
+              >
+                <a
+                  className="primary-solid h-full w-full text-center text-lg"
+                  href={item.url}
+                >
+                  {item.name}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </aside>
   );
 };

@@ -9,8 +9,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import globalStylesheetUrl from "./styles/app.css";
+import appStyles from "./styles/app.css";
+import tailwindStyles from "~/styles/tailwind.css";
 import tacoDeliteFavicon from "./assets/td-logo_2021.png";
 
 let acierBatStyleSheetUrl = "https://use.typekit.net/kui8jtg.css";
@@ -22,8 +22,8 @@ export const links: LinksFunction = () => {
     { rel: "icon", href: tacoDeliteFavicon },
     { rel: "stylesheet", href: acierBatStyleSheetUrl },
     { rel: "stylesheet", href: secularOneStyleSheetUrl },
-    { rel: "stylesheet", href: globalStylesheetUrl },
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: appStyles },
+    { rel: "stylesheet", href: tailwindStyles },
   ];
 };
 
