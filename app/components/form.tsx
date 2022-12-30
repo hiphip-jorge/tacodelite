@@ -10,7 +10,10 @@ const Form = (props: Props) => {
   return (
     <RemixForm className=" pb-80" method="post">
       <fieldset className="">
-        <label className="primary-solid text-tertiary ml-2 text-xl" htmlFor="">
+        <label
+          className="ml-2 font-primary-solid text-xl text-green-dark"
+          htmlFor=""
+        >
           Name
         </label>
         <input
@@ -19,7 +22,10 @@ const Form = (props: Props) => {
           placeholder="Nombre"
           //   onChange={(e) => setName(e.target.value)}
         />
-        <label className="primary-solid text-tertiary ml-2 text-xl" htmlFor="">
+        <label
+          className="ml-2 font-primary-solid text-xl text-green-dark"
+          htmlFor=""
+        >
           Email
         </label>
         <input
@@ -28,7 +34,10 @@ const Form = (props: Props) => {
           placeholder="example@burrito.com"
           // onChange={e => setEmail(e.target.value)}
         />
-        <label className="primary-solid text-tertiary ml-2 text-xl" htmlFor="">
+        <label
+          className="ml-2 font-primary-solid text-xl text-green-dark"
+          htmlFor=""
+        >
           Event Description
         </label>
         <textarea
@@ -40,7 +49,10 @@ const Form = (props: Props) => {
           rows={4}
           cols={30}
         />
-        <label className="primary-solid text-tertiary ml-2 text-xl" htmlFor="">
+        <label
+          className="ml-2 font-primary-solid text-xl text-green-dark"
+          htmlFor=""
+        >
           Date
         </label>
         <DatePicker

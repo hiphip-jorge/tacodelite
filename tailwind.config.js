@@ -16,7 +16,23 @@ module.exports = {
       'xl': '1280px',
       // => @media (min-width: 1280px) { ... }
     },
-    extend: {},
+    extend: {
+      colors: {
+        green: {
+          primary: 'var(--color-primary-main)',
+          light: 'var(--color-primary-light)',
+          dark: 'var(--color-primary-dark)'
+        },
+        light: 'var(--color-light)',
+        dark: 'var(--color-dark)'
+      },
+      fontFamily: {
+        'primary-solid': ['acier-bat-solid', 'sans-serif'],
+        'primary-gris': ['acier-bat-gris', 'sans-serif'],
+        'primary-outline': ['acier-bat-outline', 'sans-serif'],
+        'secondary-secular': ['Secular One', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 };

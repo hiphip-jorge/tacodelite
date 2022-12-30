@@ -22,7 +22,7 @@ const Card = ({ item, id, className }: Props) => {
       id={id}
       className={
         (className ? className + " " : "") +
-        (isOpen ? "w-[300px] shadow-2xl " : "") +
+        (isOpen ? "w-[280px] shadow-2xl " : "") +
         "card"
       }
       layout
@@ -33,14 +33,16 @@ const Card = ({ item, id, className }: Props) => {
         className="flex w-full justify-between gap-4"
         layout="position"
       >
-        <h3 className="primary-solid text-tertiary text-left text-2xl leading-6">
+        <h3 className="text-left font-primary-solid text-2xl leading-6 text-green-dark">
           {item.name}
         </h3>
-        <div className={`h-fit mt-1 ${isOpen ? "open" : "close"}`}>{menu_arrow}</div>
+        <div className={`mt-1 h-fit ${isOpen ? "open" : "close"}`}>
+          {menu_arrow}
+        </div>
       </motion.div>
       {isOpen && (
         <motion.p
-          className="secondary-secular-one  text-left"
+          className="text-left  font-secondary-secular"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
@@ -48,7 +50,7 @@ const Card = ({ item, id, className }: Props) => {
           {item.description}
         </motion.p>
       )}
-      <p className="secondary-secular-one text-primary text-2xl">
+      <p className="font-secondary-secular text-2xl text-green-primary">
         {"$" + item.price}
       </p>
     </motion.button>

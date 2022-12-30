@@ -34,7 +34,7 @@ const Modal = ({ isOpen, contentList, handleClose }: Props) => {
     <aside className={`modalMask ${menuClassState}`} onClick={handleClose}>
       <div className="modalContainer">
         <button
-          className="bg-primary animate-grow-n-shrink-subtle absolute -right-6 -top-6 z-30 h-14 w-14 rounded-full p-4"
+          className="animate-grow-n-shrink-subtle absolute -right-6 -top-6 z-30 h-12 w-12 rounded-full bg-green-primary p-4"
           onClick={handleClose}
         >
           <div className="h-5/6 w-5/6">
@@ -46,10 +46,10 @@ const Modal = ({ isOpen, contentList, handleClose }: Props) => {
             return (
               <li
                 key={idx}
-                className="text-tertiary flex justify-center p-2 after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-8 after:rounded-sm after:bg-green-100 after:last:content-none"
+                className="text-dark flex justify-center p-2 after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-8 after:rounded-sm after:bg-green-100 after:last:content-none"
               >
                 <a
-                  className="primary-solid h-full w-full text-center text-lg"
+                  className="font-primary-solid h-full w-full text-center text-lg"
                   href={item.url}
                 >
                   {item.name}

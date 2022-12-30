@@ -13,7 +13,7 @@ const Menu = () => {
   return (
     <main className="secondary-open-sans py-4">
       <header className="flex justify-between">
-        <h1 className="primary-solid text-primary items-center text-3xl">
+        <h1 className="font-primary-solid items-center text-3xl text-green-primary">
           Menu
         </h1>
         <a href="/">
@@ -39,7 +39,7 @@ const nodifyMenu = (menu: object) => {
         return (
           <React.Fragment key={item.id}>
             <Card id={String(item.id)}>
-              <h2 className="primary-solid text-md">{item.title}</h2>
+              <h2 className="font-primary-solid text-md">{item.title}</h2>
               <p className="secondary-open-sans h-[125px] text-xs">
                 {item.description}
               </p>
@@ -58,7 +58,7 @@ const nodifyMenu = (menu: object) => {
 
     return (
       <React.Fragment key={index}>
-        <h2 className="text-secondary mt-8 mb-2 text-center text-2xl">
+        <h2 className="mt-8 mb-2 text-center text-2xl text-green-light">
           {category}
         </h2>
         <section className="flex flex-col gap-3">{cards}</section>

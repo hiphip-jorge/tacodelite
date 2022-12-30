@@ -45,7 +45,7 @@ function Index() {
 
   const categories = useLoaderData<category[]>();
   const categoryRefs = categories.map(() => {
-    return useInView({ threshold: 1, rootMargin: "0px 0px -250px 0px" });
+    return useInView({ threshold: 1, rootMargin: "0px 0px -295px 0px" });
   });
 
   const toggle = (e: React.SyntheticEvent) => {
@@ -69,7 +69,9 @@ function Index() {
     <div className="bg-white">
       {/* Taco Delite Header */}
       <header className="flex h-24 w-full items-center justify-center bg-green-50">
-        <p className="primary-gris text-primary text-5xl">Taco Delite</p>
+        <p className="font-primary-gris text-5xl text-green-primary">
+          Taco Delite
+        </p>
       </header>
       <main>
         {/* Hero Section */}
@@ -78,10 +80,10 @@ function Index() {
             <img src={catering} alt="plate 1 image" />
           </picture>
           <div className="px-12">
-            <h2 className="primary-solid text-tertiary text-[2rem] leading-9">
+            <h2 className="font-primary-solid text-[2rem] leading-9 text-green-dark">
               Fresh Everyday.
             </h2>
-            <h2 className="primary-solid text-primary text-end text-[2rem] leading-9">
+            <h2 className="text-end font-primary-solid text-[2rem] leading-9 text-green-primary">
               Real Ingredients.
             </h2>
           </div>
@@ -116,7 +118,7 @@ function Index() {
               toggle(e);
             }}
           />
-          <div className="bg-secondary h-1 w-full rounded-lg" />
+          <div className="h-1 w-full rounded-lg bg-green-light" />
           <IconButton
             iconSVG={utensils("hover:fill-[#43B64Fdd] fill-[#297031]")}
             handleClick={(e) => {
@@ -135,20 +137,20 @@ function Index() {
                 alt=""
               />
             </figure>
-            <p className="text-tertiary secondary-secular-one text-lg">
+            <p className="font-secondary-secular text-lg text-dark">
               {aboutUs_p}
             </p>
           </div>
         </Section>
         {/* Menu Section  */}
         <Section header="Menu">
-          <div className="px-16">
+          <div>
             {categories.map((category, idx) => (
               <div id={category.name.toLowerCase()} key={category.name}>
                 <h1
                   id={category.name}
                   ref={categoryRefs[idx].ref}
-                  className={`text-tertiary secondary-secular-one underline-effect ml-4 mt-8 w-fit text-4xl ${
+                  className={`underline-effect ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark ${
                     categoryRefs[idx].inView && "in--view"
                   }`}
                 >
@@ -218,7 +220,7 @@ const isWeekday = (date: Date) => {
     <RemixForm className=" pb-80" method="post">
       <fieldset className="">
         <label
-          className="primary-solid text-tertiary ml-2 text-xl"
+          className="font-primary-solid text-green-dark ml-2 text-xl"
           htmlFor=""
         >
           Name
@@ -230,7 +232,7 @@ const isWeekday = (date: Date) => {
           //   onChange={(e) => setName(e.target.value)}
         />
         <label
-          className="primary-solid text-tertiary ml-2 text-xl"
+          className="font-primary-solid text-green-dark ml-2 text-xl"
           htmlFor=""
         >
           Email
@@ -242,7 +244,7 @@ const isWeekday = (date: Date) => {
           // onChange={e => setEmail(e.target.value)}
         />
         <label
-          className="primary-solid text-tertiary ml-2 text-xl"
+          className="font-primary-solid text-green-dark ml-2 text-xl"
           htmlFor=""
         >
           Event Description
@@ -257,7 +259,7 @@ const isWeekday = (date: Date) => {
           cols={30}
         />
         <label
-          className="primary-solid text-tertiary ml-2 text-xl"
+          className="font-primary-solid text-green-dark ml-2 text-xl"
           htmlFor=""
         >
           Date

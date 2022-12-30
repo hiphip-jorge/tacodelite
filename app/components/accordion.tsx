@@ -29,20 +29,22 @@ const Accordian = ({ menuProps, subMenuProps, active }: Props) => {
       <button
         onClick={() => menuProps.func && menuProps.func()}
         className={`flex w-4/5 items-center justify-between gap-6 rounded-2xl text-left duration-300 ease-in-out ${
-          active ? "toggleAnimationSubtle text-primary shadow-md bg-[#ccffdd]" : ""
+          active
+            ? "toggleAnimationSubtle bg-[#ccffdd] text-green-primary shadow-md"
+            : ""
         }`}
       >
         <span className="w-12 px-4 py-3 pr-0">{menuProps.icon}</span>
         <h1 className={`${mColor} accordionHeader`}>{menuProps.header}</h1>
       </button>
       {active && (
-        <ul className="border-secondary ml-4 flex flex-col border-l-4 px-4 text-sm max-h-[60vh] h-fit overflow-scroll w-4/5">
+        <ul className="ml-4 flex h-fit max-h-[60vh] w-4/5 flex-col overflow-scroll border-l-4 bg-green-light px-4 text-sm">
           {subMenuProps.items.map((item) => (
             <li key={item.name + "Accordion"} className="flex">
               <a
                 className={
                   sColor +
-                  " hover:bg-secondary h-full w-full rounded-md p-2 duration-300 ease-in-out hover:shadow-md"
+                  " h-full w-full rounded-md p-2 duration-300 ease-in-out hover:bg-green-light hover:shadow-md"
                 }
                 href={item.href}
                 onClick={() => subMenuProps.func && subMenuProps.func()}

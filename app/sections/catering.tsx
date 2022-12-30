@@ -11,10 +11,12 @@ type Props = {
 const Catering = ({ header, subHeader, children }: Props) => {
   return (
     <section className="my-8">
-      <h1 className="primary-outline text-primary text-center text-6xl">
+      <h1 className="font-primary-outline text-center text-6xl text-green-primary">
         {header}
       </h1>
-      <h2 className="primary-solid text-secondary text-2xl">{subHeader}</h2>
+      <h2 className="font-primary-solid text-2xl text-green-light">
+        {subHeader}
+      </h2>
       {children}
     </section>
   );
