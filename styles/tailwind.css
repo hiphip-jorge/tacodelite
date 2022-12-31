@@ -1,17 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
-@layer sections {
-    .header {
-        @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24;
-    }
+
+.header {
+    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24;
+}
+
+.menuSectionHeader {
+    @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark
 }
 
 @layer components {
     .card {
         @apply border-green-light my-10  mx-auto flex flex-col justify-between w-[260px] gap-2
              border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
+    }
+
+    .button-primary {
+        @apply bg-green-primary font-primary-solid text-white duration-300 hover:bg-green-dark shadow-md
+    }
+
+    .button-secondary {
+        @apply border-2 border-green-primary bg-white font-primary-solid text-green-primary duration-300 hover:border-0 hover:bg-green-light hover:text-white shadow-md
     }
 
     .modalMask {
@@ -24,6 +34,16 @@
 
     .modalContainer {
         @apply absolute top-1/2 left-1/2 h-fit w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white shadow-lg outline outline-1 outline-green-light;
+    }
+
+    .iconButton {
+        @apply sticky top-32 right-full left-4 z-10 float-left flex w-fit flex-col gap-2 md:hidden
+    }
+}
+
+@layer utilities {
+    .hero-h2 {
+        @apply font-primary-solid text-[2rem] leading-9
     }
 }
 
