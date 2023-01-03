@@ -3,25 +3,29 @@
 @tailwind utilities;
 
 .header {
-    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24;
+    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24 md:h-32;
 }
 
 .menuSectionHeader {
-    @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark
+    @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark md:ml-28
 }
 
 @layer components {
     .card {
-        @apply border-green-light my-10  mx-auto flex flex-col justify-between w-[260px] gap-2
+        @apply border-green-light my-6  mx-auto flex flex-col justify-between w-[260px] gap-2
              border rounded-3xl border-solid p-6 bg-[#F4FBF5] shadow-lg
     }
 
+    .button {
+        @apply font-primary-solid shadow-xl h-12 w-32 rounded-[14px] md:h-14 md:w-40 md:rounded-2xl
+    }
+
     .button-primary {
-        @apply bg-green-primary font-primary-solid text-white duration-300 hover:bg-green-dark shadow-md
+        @apply button bg-green-primary  text-white duration-300 hover:bg-green-dark 
     }
 
     .button-secondary {
-        @apply border-2 border-green-primary bg-white font-primary-solid text-green-primary duration-300 hover:border-0 hover:bg-green-light hover:text-white shadow-md
+        @apply button border-2 border-green-primary bg-white text-green-primary duration-300 hover:border-0 hover:bg-green-light hover:text-white 
     }
 
     .modalMask {
@@ -37,13 +41,17 @@
     }
 
     .iconButton {
-        @apply sticky top-32 right-full left-4 z-10 float-left flex w-fit flex-col gap-2 md:hidden
+        @apply sticky top-32 right-full left-4 z-10 float-left flex w-fit flex-col gap-2 lg:hidden
     }
 }
 
 @layer utilities {
     .hero-h2 {
-        @apply font-primary-solid text-[2rem] leading-9
+        @apply font-primary-solid text-[2rem] leading-9 md:text-5xl
+    }
+
+    .skew-backdrop {
+        @apply before:absolute before:-inset-1 before:top-5 before:block before:h-3/4 before:-skew-y-6 before:bg-green-light 
     }
 }
 

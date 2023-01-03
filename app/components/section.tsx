@@ -24,7 +24,7 @@ const Section = ({
       }`}
     >
       <h1
-        className={`font-primary-outline mx-auto w-fit text-6xl text-green-primary ${
+        className={`font-primary-outline mx-auto w-fit text-6xl md:text-7xl text-green-primary ${
           hClass ? hClass : ""
         }`}
       >

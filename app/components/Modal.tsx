@@ -46,10 +46,10 @@ const Modal = ({ isOpen, contentList, handleClose }: Props) => {
             return (
               <li
                 key={idx}
-                className="text-dark flex justify-center p-2 after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-8 after:rounded-sm after:bg-green-100 after:last:content-none"
+                className="text-dark flex justify-center p-2 after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-10 after:rounded-sm after:bg-green-100 after:last:content-none"
               >
                 <a
-                  className="font-primary-solid h-full w-full text-center text-lg"
+                  className="font-primary-solid h-full w-full text-center text-lg md:text-3xl"
                   href={item.url}
                 >
                   {item.name}

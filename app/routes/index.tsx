@@ -73,23 +73,30 @@ function Index() {
     <div className="bg-white">
       {/* Taco Delite Header */}
       <header className="header">
-        <p className="font-primary-gris text-5xl text-green-primary">Taco</p>
+        <p className="font-primary-gris text-5xl text-green-primary md:text-6xl">
+          Taco
+        </p>
         <figure>
           <img
             src={taco_delite}
             alt="taco delite logo"
-            className="w-10 sm:hidden md:inline"
+            className="w-16 sm:hidden md:inline"
           />
         </figure>
-        <p className="font-primary-gris text-5xl text-green-primary">Delite</p>
+        <p className="font-primary-gris text-5xl text-green-primary md:text-6xl">
+          Delite
+        </p>
       </header>
       <main>
         {/* Hero Section */}
-        <Section header="15th Street" height="h-[calc(100vh-6rem)]">
-          <picture>
-            <img src={catering} alt="plate 1 image" />
+        <Section
+          header="15th Street"
+          height="h-[calc(100vh-6rem)] md:h-[calc(100vh-8em)]"
+        >
+          <picture className="skew-backdrop relative flex flex-col items-center">
+            <img className="z-10" src={catering} alt="plate 1 image" />
           </picture>
-          <div className="px-12">
+          <div className="px-12 md:px-28">
             <h2 className="hero-h2 text-green-dark">Fresh Everyday.</h2>
             <h2 className="hero-h2 text-end text-green-primary">
               Real Ingredients.
@@ -97,7 +104,7 @@ function Index() {
           </div>
           <div className="mx-auto flex w-fit gap-4">
             <Button
-              className="h-12 w-32 rounded-[14px]"
+              className=""
               handleClick={(e) => {
                 handleMenu();
                 handleToggle(e);
@@ -106,7 +113,7 @@ function Index() {
               Menu
             </Button>
             <Button
-              className="h-12 w-32 rounded-[14px]"
+              className=""
               handleClick={(e) => {
                 handleOrder();
                 handleToggle(e);
@@ -136,16 +143,16 @@ function Index() {
           />
         </aside>
         {/* About Us Section */}
-        <Section header="About Us" hClass="ml-10">
+        <Section header="About Us" hClass="ml-10 md:mx-auto">
           <div className="px-16 pl-[calc(4rem-1rem)]">
-            <figure>
+            <figure className="flex justify-center">
               <img
                 src={td_building}
-                className="my-4 rounded-3xl shadow-lg"
+                className="my-4 rounded-3xl shadow-lg md:w-3/4"
                 alt=""
               />
             </figure>
-            <p className="font-secondary-secular text-lg text-dark">
+            <p className="font-secondary-secular text-lg text-dark md:px-20 md:text-2xl">
               {aboutUs_p}
             </p>
           </div>
@@ -164,13 +171,15 @@ function Index() {
                 >
                   {category.name}
                 </h1>
-                {category.foodItems.map((item, idx) => (
-                  <Card
-                    id={item.name.replaceAll(" ", "-")}
-                    key={idx}
-                    item={item}
-                  />
-                ))}
+                <div className="flex flex-wrap px-10 gap-4 justify-start">
+                  {category.foodItems.map((item, idx) => (
+                    <Card
+                      id={item.name.replaceAll(" ", "-")}
+                      key={idx}
+                      item={item}
+                    />
+                  ))}
+                </div>
               </div>
             ))}
           </div>
