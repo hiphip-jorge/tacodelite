@@ -80,7 +80,7 @@ function Index() {
           <img
             src={taco_delite}
             alt="taco delite logo"
-            className="w-16 sm:hidden md:inline"
+            className="w-14 sm:hidden md:inline"
           />
         </figure>
         <p className="font-primary-gris text-5xl text-green-primary md:text-6xl">
@@ -91,9 +91,10 @@ function Index() {
         {/* Hero Section */}
         <Section
           header="15th Street"
-          height="h-[calc(100vh-6rem)] md:h-[calc(100vh-8em)]"
+          height="h-[calc(100vh-6rem)] lg:h-[calc(100vh-7em)]"
+          sectionClass="flex flex-col items-center justify-around py-10 lg:py-16"
         >
-          <picture className="skew-backdrop relative flex flex-col items-center">
+          <picture className="skew-backdrop relative flex flex-col items-center lg:w-[36rem]">
             <img className="z-10" src={catering} alt="plate 1 image" />
           </picture>
           <div className="px-12 md:px-28">
@@ -143,7 +144,7 @@ function Index() {
           />
         </aside>
         {/* About Us Section */}
-        <Section header="About Us" hClass="ml-10 md:mx-auto">
+        <Section header="About Us">
           <div className="px-16 pl-[calc(4rem-1rem)]">
             <figure className="flex justify-center">
               <img
@@ -171,7 +172,7 @@ function Index() {
                 >
                   {category.name}
                 </h1>
-                <div className="flex flex-wrap px-10 gap-4 justify-start">
+                <div className="flex flex-wrap justify-start gap-4 px-12 md:px-16">
                   {category.foodItems.map((item, idx) => (
                     <Card
                       id={item.name.replaceAll(" ", "-")}

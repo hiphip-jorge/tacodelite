@@ -3,12 +3,24 @@
 @tailwind utilities;
 
 .header {
-    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24 md:h-32;
+    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24 lg:h-28;
 }
 
 .menuSectionHeader {
     @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark md:ml-28
 }
+
+/* Sizes */
+/**/
+
+/* button  */
+.button-md {
+    @apply md:h-14 md:w-40 md:rounded-2xl;
+}
+
+/* .button-lg {
+    @apply lg:
+} */
 
 @layer components {
     .card {
@@ -17,7 +29,7 @@
     }
 
     .button {
-        @apply font-primary-solid shadow-xl h-12 w-32 rounded-[14px] md:h-14 md:w-40 md:rounded-2xl
+        @apply font-primary-solid shadow-xl h-12 w-32 rounded-[14px] button-md;
     }
 
     .button-primary {
@@ -51,7 +63,9 @@
     }
 
     .skew-backdrop {
-        @apply before:absolute before:-inset-1 before:top-5 before:block before:h-3/4 before:-skew-y-6 before:bg-green-light 
+        @apply before:absolute before:-inset-1 before:top-5 before:block before:h-3/4 before:-skew-y-6 
+            before:bg-green-light lg:before:w-[115%] lg:before:-left-12 lg:before:top-9 before:shadow-2xl 
+            before:shadow-dark;
     }
 }
 
