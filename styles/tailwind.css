@@ -7,16 +7,17 @@
 }
 
 .menuSectionHeader {
-    @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark md:ml-28
+    @apply ml-20 mt-8 w-fit font-secondary-secular text-4xl text-dark md:ml-28 xl:ml-24
+}
+
+.subtle-underline {
+    @apply after:absolute after:left-1/2 after:h-[2px] after:w-5/6 after:-translate-x-1/2 after:translate-y-10 after:rounded-sm after:bg-green-100 after:last:content-none;
 }
 
 /* Sizes */
 /**/
 
 /* button  */
-.button-md {
-    @apply md:h-14 md:w-40 md:rounded-2xl;
-}
 
 /* .button-lg {
     @apply lg:
@@ -29,15 +30,15 @@
     }
 
     .button {
-        @apply font-primary-solid shadow-xl h-12 w-32 rounded-[14px] button-md;
+        @apply font-primary-solid shadow-xl h-12 w-32 rounded-[14px];
     }
 
     .button-primary {
-        @apply button bg-green-primary  text-white duration-300 hover:bg-green-dark 
+        @apply button bg-green-primary  text-white duration-300 hover:bg-green-light hover:text-green-dark
     }
 
     .button-secondary {
-        @apply button border-2 border-green-primary bg-white text-green-primary duration-300 hover:border-0 hover:bg-green-light hover:text-white 
+        @apply button border-2 border-green-primary bg-white text-green-primary duration-300 hover:border-0 hover:bg-green-dark hover:text-white
     }
 
     .modalMask {
@@ -49,7 +50,7 @@
     }
 
     .modalContainer {
-        @apply absolute top-1/2 left-1/2 h-fit w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white shadow-lg outline outline-1 outline-green-light;
+        @apply absolute top-1/2 left-1/2 h-fit w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white shadow-lg outline outline-1 outline-green-light md:w-1/2 xl:w-1/5;
     }
 
     .iconButton {
@@ -64,8 +65,8 @@
 
     .skew-backdrop {
         @apply before:absolute before:-inset-1 before:top-5 before:block before:h-3/4 before:-skew-y-6 
-            before:bg-green-light lg:before:w-[115%] lg:before:-left-12 lg:before:top-9 before:shadow-2xl 
-            before:shadow-dark;
+            lg:before:w-[115%] lg:before:-left-12 lg:before:top-9 before:shadow-2xl before:shadow-dark 
+            before:bg-gradient-to-br before:from-green-light before:to-[#8FD69B];
     }
 }
 
