@@ -22,6 +22,7 @@ import catering from "~/assets/catering.png";
 import td_building from "~/assets/taco_delite.jpeg";
 import taco_delite from "~/assets/td-logo_2021.png";
 import { car, utensils } from "~/assets/svg";
+import { scrollTo } from "~/utilities/components/modals.utils";
 
 // Types
 export type category = { name: string; foodItems: Array<FoodItem> };
@@ -44,12 +45,31 @@ export const loader: LoaderFunction = async () => {
 };
 
 function Index() {
+  // flag for categories in view
+  let hasInView = false;
+  // states
   const [isOpen, setIsOpen] = useState(false);
   const [currentContent, setCurrentContent] = useState<modalContent[]>();
-
+  const [constentType, setContentType] = useState("links");
+  // custom hooks
   const categories = useLoaderData<category[]>();
   const categoryRefs = categories.map(() => {
-    return useInView({ threshold: 1, rootMargin: "0px 0px -300px 0px" });
+    const thisCategory = useInView({
+      threshold: 1,
+      rootMargin: "-50px 0px -100px 0px",
+    });
+
+    // if category is inview and there no other is in view, flip flag to true; else, return false
+    if (thisCategory.inView && !hasInView) {
+      hasInView = true;
+      return thisCategory;
+    } else {
+      return {
+        ref: thisCategory.ref,
+        inView: false,
+        entry: thisCategory.entry,
+      };
+    }
   });
 
   const handleToggle = (e: React.SyntheticEvent) => {
@@ -58,6 +78,7 @@ function Index() {
   };
 
   const handleMenu = () => {
+    setContentType("buttons");
     setCurrentContent(
       categories.map((category) => {
         return { name: category.name, url: "#" + category.name };
@@ -66,6 +87,7 @@ function Index() {
   };
 
   const handleOrder = () => {
+    setContentType("links");
     setCurrentContent([doordash, ubereats]);
   };
 
@@ -170,14 +192,17 @@ function Index() {
                       key={idx}
                       className="flex justify-center p-2 text-green-light"
                     >
-                      <a
+                      <button
                         className={`h-full w-full font-primary-solid text-3xl duration-500 ease-in-out xl:text-left ${
                           categoryRefs[idx].inView && "text-green-dark"
                         }`}
-                        href={"#" + category.name}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          scrollTo(category.name);
+                        }}
                       >
                         {category.name}
-                      </a>
+                      </button>
                     </li>
                   );
                 })}
@@ -206,6 +231,7 @@ function Index() {
                         id={item.name.replaceAll(" ", "-")}
                         key={idx}
                         item={item}
+                        className="md: sm:w-56"
                       />
                     ))}
                   </div>
@@ -216,7 +242,7 @@ function Index() {
         </Section>
       </main>
       <footer className="flex flex-col justify-center gap-6 bg-green-dark p-10">
-        <div className="w-max-[1200px] m-auto flex w-1/2 flex-col gap-4 lg:flex-row lg:flex-wrap md:gap-8">
+        <div className="w-max-[1200px] m-auto flex w-1/2 flex-col gap-4 md:gap-8 lg:flex-row lg:flex-wrap">
           <div className="w-fit">
             <h1 className="font-primary-solid text-3xl text-light">Location</h1>
             <ul className="flex flex-col font-secondary-secular">
@@ -291,6 +317,7 @@ function Index() {
         contentList={currentContent}
         isOpen={isOpen}
         handleClose={handleToggle}
+        isButtons={constentType === "buttons"}
       />
     </div>
   );

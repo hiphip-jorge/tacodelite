@@ -27,8 +27,6 @@ export const isWeekday = (date) => {
     const day = new Date(date).getDay();
     return day !== 0 && day !== 6;
 };
-
-
   // const [formStartDate, setFormStartDate] = useState(getValidDate(2));
 
 {

@@ -1,13 +1,21 @@
+import { link } from "fs";
 import { useEffect, useState } from "react";
 import { modalContent } from "~/routes";
+import { buttons, links } from "~/utilities/components/modals.utils";
 
 type Props = {
   isOpen: boolean;
-  contentList: modalContent[] | undefined;
-  handleClose: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  contentList?: modalContent[];
+  handleClose?: React.MouseEventHandler<HTMLButtonElement>;
+  isButtons?: boolean;
 };
 
-const Modal = ({ isOpen, contentList, handleClose }: Props) => {
+const Modal = ({
+  isOpen,
+  contentList,
+  handleClose,
+  isButtons = false,
+}: Props) => {
   const [fadeOut, setFadeOut] = useState(false);
   const menuClassState = isOpen
     ? "sideMenu-fadeIn"
@@ -31,7 +39,10 @@ const Modal = ({ isOpen, contentList, handleClose }: Props) => {
   }, [isOpen]);
 
   return (
-    <aside className={`modalMask ${menuClassState}`} onClick={handleClose}>
+    <aside
+      className={`modalMask lg:hidden ${menuClassState}`}
+      onClick={handleClose}
+    >
       <div className="modalContainer">
         <button
           className="animate-grow-n-shrink-subtle absolute -right-6 -top-6 z-30 h-12 w-12 rounded-full bg-green-primary p-4"
@@ -46,14 +57,9 @@ const Modal = ({ isOpen, contentList, handleClose }: Props) => {
             return (
               <li
                 key={idx}
-                className="text-dark flex justify-center p-2 subtle-underline"
+                className="subtle-underline flex justify-center p-2 text-dark"
               >
-                <a
-                  className="font-primary-solid h-full w-full text-center text-lg md:text-3xl"
-                  href={item.url}
-                >
-                  {item.name}
-                </a>
+                {isButtons ? buttons(item, handleClose) : links(item)}
               </li>
             );
           })}
