@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .header {
-    @apply flex bg-green-50 items-center w-full sm:h-24  sm:justify-center sm:gap-2 md:gap-8 md:px-24 lg:h-28;
+    @apply flex items-center w-full gap-1 sm:h-24  sm:justify-center md:gap-8 md:px-24 lg:h-28;
 }
 
 .menuSectionHeader {

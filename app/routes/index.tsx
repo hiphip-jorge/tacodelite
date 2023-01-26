@@ -95,7 +95,7 @@ function Index() {
     <div className="bg-white">
       {/* Taco Delite Header */}
       <header className="header">
-        <p className="font-primary-gris text-5xl text-green-primary md:text-6xl">
+        <p className="font-primary-gris text-4xl text-green-primary md:text-6xl">
           Taco
         </p>
         <figure>
@@ -105,7 +105,7 @@ function Index() {
             className="w-14 sm:hidden md:inline"
           />
         </figure>
-        <p className="font-primary-gris text-5xl text-green-primary md:text-6xl">
+        <p className="font-primary-gris text-4xl text-green-primary md:text-6xl">
           Delite
         </p>
       </header>
@@ -184,7 +184,7 @@ function Index() {
         <Section header="Menu">
           <div className="lg:my-8 lg:flex lg:gap-2 xl:my-16">
             {/* Side nav */}
-            <aside className="sticky top-16 left-10 hidden h-fit lg:inline lg:w-1/4">
+            <aside className="sticky top-4 left-10 hidden h-fit lg:inline lg:w-1/4">
               <ul>
                 {categories.map((category, idx) => {
                   return (
@@ -241,15 +241,15 @@ function Index() {
           </div>
         </Section>
       </main>
-      <footer className="flex flex-col justify-center gap-6 bg-green-dark p-10">
-        <div className="w-max-[1200px] m-auto flex w-1/2 flex-col gap-4 md:gap-8 lg:flex-row lg:flex-wrap">
+      <footer className="flex flex-col justify-center gap-10 bg-green-50 p-10">
+        <div className="grid grid-flow-col grid-rows-4 items-center justify-center gap-4 md:grid-rows-2 md:gap-8 lg:flex-row lg:flex-wrap xl:grid-rows-1">
           <div className="w-fit">
-            <h1 className="font-primary-solid text-3xl text-light">Location</h1>
+            <h1 className="font-primary-solid text-xl text-green-primary">Location</h1>
             <ul className="flex flex-col font-secondary-secular">
               <li>
                 <a
                   href="https://www.google.com/maps/dir/''/Taco+Delite,+West+15th+Street,+Plano,+TX/@33.0210863,-96.7853179,13z/data=!3m2!4b1!5s0x864c22c760f8bec1:0x153e7787779c5cc6!4m8!4m7!1m0!1m5!1m1!1s0x864c22779cbdf961:0x122a03406b2f3e01!2m2!1d-96.7503414!2d33.0210227"
-                  className="text-green-light duration-300 hover:text-white"
+                  className="underline-effect in--hover text-green-dark duration-300 hover:text-dark"
                 >
                   2957 W 15th Street, Plano, TX, 75075
                 </a>
@@ -257,14 +257,14 @@ function Index() {
             </ul>
           </div>
           <div className="w-fit">
-            <h1 className="font-primary-solid text-3xl text-light">
+            <h1 className="font-primary-solid text-xl text-green-primary">
               Contact Us
             </h1>
             <ul className="flex flex-col font-secondary-secular">
               <li>
                 <a
                   href="tel: 972-964-5419"
-                  className="text-green-light duration-300 hover:text-white"
+                  className="underline-effect in--hover text-green-dark duration-300 hover:text-dark"
                 >
                   972-964-5419
                 </a>
@@ -272,7 +272,7 @@ function Index() {
               <li>
                 <a
                   href="email: taco delite"
-                  className="text-green-light duration-300 hover:text-white"
+                  className="underline-effect in--hover text-green-dark duration-300 hover:text-dark"
                 >
                   tacodelitewestplano@gmail.com
                 </a>
@@ -280,14 +280,14 @@ function Index() {
             </ul>
           </div>
           <div className="w-fit">
-            <h1 className="font-primary-solid text-3xl text-light">
+            <h1 className="font-primary-solid text-xl text-green-primary">
               Follow Us
             </h1>
             <ul className="flex flex-col font-secondary-secular">
               <li>
                 <a
                   href="https://www.facebook.com/TacoDeliteWestPlano"
-                  className="text-green-light duration-300 hover:text-white"
+                  className="underline-effect in--hover text-green-dark duration-300 hover:text-dark"
                 >
                   Facebook @ Taco Delite West Plano
                 </a>
@@ -295,12 +295,12 @@ function Index() {
             </ul>
           </div>
           <div className="w-fit">
-            <h1 className="font-primary-solid text-3xl text-light">
+            <h1 className="font-primary-solid text-xl text-green-primary">
               Store Hours
             </h1>
             <ul className="flex flex-col font-secondary-secular">
-              <li className="text-green-light">Mon-Sat: 7am-9pm</li>
-              <li className="text-green-light">Sundays: closed</li>
+              <li className="text-green-dark">Mon-Sat: 7am-9pm</li>
+              <li className="text-green-dark">Sundays: closed</li>
             </ul>
           </div>
         </div>
@@ -308,7 +308,7 @@ function Index() {
           <figure className="flex h-8 w-8 items-end justify-start">
             <img src={taco_delite} alt="taco delite logo" className="w-8" />
           </figure>
-          <p className="font-secondary-secular text-white ">
+          <p className="font-secondary-secular text-green-dark ">
             CJN Inc. All right reserved.
           </p>
         </div>

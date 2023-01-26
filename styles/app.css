@@ -52,7 +52,10 @@ button:hover .accordionHeader {
     width: 100%;
 }
 
-
+.in--hover:hover:before {
+    height: 0.5rem;
+    width: 100%;
+}
 
 .cancel {
     width: 100%;
