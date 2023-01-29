@@ -31,6 +31,7 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Taco Delite | 15th Street",
   viewport: "width=device-width,initial-scale=1",
+  keywords: "Tacos,Plano,Richardson,Best,Fresh",
 });
 
 export default function App() {

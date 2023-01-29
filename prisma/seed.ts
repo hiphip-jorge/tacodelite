@@ -1,33 +1,34 @@
+// neat/useful commands: 
+//   - npx prisma studio: allows you to see db in prisma app
+
 import { PrismaClient } from "@prisma/client";
 import fetch from "node-fetch";
 const db = new PrismaClient();
+import tacodelite from './tacodelite.menu.json'
 
-type menuItem = {
-    id: number;
-    title: string;
-    description: string;
-    price: string;
-    category: string;
-    image: string;
-    alt: string;
-    active: boolean;
-  };
+// type foodItem = {
+//   id: number;
+//   title: string;
+//   description: string;
+//   price: string;
+//   category: string;
+//   image: string;
+//   alt: string;
+//   active: boolean;
+// };
 
-async function seed() {
-    const food:any = await fetch(
-        "https://tacodelite.herokuapp.com/products/"
-      ).then((res) => res.json()
-      ).then((res) => res.sort((a:menuItem,b:menuItem) => a.id - b.id)
-      ).then((res) => res.map(({image, category, ...rest}) => {
-        return rest;
-    })).then((res) => res.map(old => {
-            return {id: old.id, name: old.title, description: old.description, price: old.price, alt: old.alt, active: old.active};
-        })
-    )
-
-    console.log('food :>> ', food);
-    
-    await Promise.all(food.map((item) => db.foodItem.create({ data: item})));
+async function seed() {    
+  await Promise.all(
+    [...getUsers().map((user) => {
+      return db.user.create({ data: user });
+    }), ...getAnnouncement().map((announcement) => {
+      return db.announcement.create({ data: announcement });
+    }), ...tacodelite.foodItems.map((foodItem) => {
+      return db.foodItem.create({data: foodItem})
+    }), ...getCategory().map((category) => {
+      return db.category.create({data: category})
+    })]
+  );
 }
 
 seed();
@@ -41,19 +42,29 @@ function getUsers() {
 
 function getCategory() {
     return [
-        {name: "Breakfast", foodItems: []},
-        {name: "Tacos", foodItems: []},
-        {name: "Burritos", foodItems: []},
-        {name: "Nachos", foodItems: []},
-        {name: "Salads", foodItems: []},
-        {name: "Quesadillas", foodItems: []},
-        {name: "Tostadas", foodItems: []},
-        {name: "Sides", foodItems: []},
-        {name: "Extras", foodItems: []},
-        {name: "Chips-n-Stuff", foodItems: []},
-        {name: "Dinners", foodItems: []},
-        {name: "Family", foodItems: []},
-        {name: "Desserts", foodItems: []},
-        {name: "Drinks", foodItems: []},
+        {name: "Breakfast", foodItems: {}},
+        {name: "Tacos", foodItems: {}},
+        {name: "Burritos", foodItems: {}},
+        {name: "Nachos", foodItems: {}},
+        {name: "Salads", foodItems: {}},
+        {name: "Quesadillas", foodItems: {}},
+        {name: "Tostadas", foodItems: {}},
+        {name: "Sides", foodItems: {}},
+        {name: "Extras", foodItems: {}},
+        {name: "Chips-n-Stuff", foodItems: {}},
+        {name: "Dinners", foodItems: {}},
+        {name: "Family", foodItems: {}},
+        {name: "Desserts", foodItems: {}},
+        {name: "Drinks", foodItems: {}},
     ]
 }
+
+function getAnnouncement() {
+  return [
+    {startDate: new Date(),
+      endDate:  new Date('January 30, 2023'),
+      message: "First Announcement of Taco Delite",
+    }
+  ]
+}
+

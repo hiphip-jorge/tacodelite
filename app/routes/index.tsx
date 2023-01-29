@@ -23,6 +23,7 @@ import td_building from "~/assets/taco_delite.jpeg";
 import taco_delite from "~/assets/td-logo_2021.png";
 import { car, utensils } from "~/assets/svg";
 import { scrollTo } from "~/utilities/components/modals.utils";
+import AnnouncementBar from "~/components/AnnouncementBar";
 
 // Types
 export type category = { name: string; foodItems: Array<FoodItem> };
@@ -93,8 +94,9 @@ function Index() {
 
   return (
     <div className="bg-white">
+      <AnnouncementBar></AnnouncementBar>
       {/* Taco Delite Header */}
-      <header className="header">
+      <header className="header border-b-2 border-green-light" role="banner">
         <p className="font-primary-gris text-4xl text-green-primary md:text-6xl">
           Taco
         </p>
@@ -244,7 +246,9 @@ function Index() {
       <footer className="flex flex-col justify-center gap-10 bg-green-50 p-10">
         <div className="grid grid-flow-col grid-rows-4 items-center justify-center gap-4 md:grid-rows-2 md:gap-8 lg:flex-row lg:flex-wrap xl:grid-rows-1">
           <div className="w-fit">
-            <h1 className="font-primary-solid text-xl text-green-primary">Location</h1>
+            <h1 className="font-primary-solid text-xl text-green-primary">
+              Location
+            </h1>
             <ul className="flex flex-col font-secondary-secular">
               <li>
                 <a

@@ -18,19 +18,25 @@ model User {
 }
 
 model FoodItem {
-  id          Int   @id @default(autoincrement())
-  name        String
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
   description String
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
   price       String
   img         String?
   alt         String?
-  active      Boolean  @default(true)
+  active      Boolean   @default(true)
 }
 
 model Category {
-  id        Int     @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   name      String
-  foodItems FoodItem[] 
+  foodItems FoodItem[]
+}
+
+model Announcement {
+  startDate DateTime @id
+  endDate   DateTime
+  message   String
 }

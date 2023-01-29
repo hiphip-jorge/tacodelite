@@ -1,0 +1,22 @@
+{
+    "foodItems": 
+        [{
+            "name": "taco",
+            "description": "",
+            "price": "2.50",
+            "categoryId": 2
+        },
+        {
+            "name": "soft taco",
+            "description": "",
+            "price": "2.89",
+            "categoryId": 2
+        },
+        {
+            "name": "taco supreme",
+            "description": "",
+            "price": "2.89",
+            "categoryId": 2
+        }]
+}
+
