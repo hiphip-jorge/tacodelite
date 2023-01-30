@@ -4,7 +4,7 @@ import { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
 
 // Prisma Imports
 import { prisma } from "~/db.server";
-import { FoodItem } from "@prisma/client";
+import { FoodItem, Announcement } from "@prisma/client";
 
 // Components Imports
 import Button from "~/components/Button";
@@ -28,6 +28,10 @@ import AnnouncementBar from "~/components/AnnouncementBar";
 // Types
 export type category = { name: string; foodItems: Array<FoodItem> };
 export type modalContent = { name: string; url: string };
+export type LoaderTypes = {
+  categories: category[];
+  // announcements: Announcement[];
+};
 
 // Constants
 const doordash = { name: "doordash", url: "https://www.doordash.com" };
@@ -35,6 +39,7 @@ const ubereats = { name: "ubereats", url: "https://www.ubereats.com" };
 
 // Remix Data Loader Function
 export const loader: LoaderFunction = async () => {
+  // let announcements = await prisma.announcement.findMany();
   let categories = await prisma.category.findMany({
     select: {
       name: true,
@@ -42,7 +47,7 @@ export const loader: LoaderFunction = async () => {
     },
   });
 
-  return categories;
+  return { categories };
 };
 
 function Index() {
@@ -53,7 +58,7 @@ function Index() {
   const [currentContent, setCurrentContent] = useState<modalContent[]>();
   const [constentType, setContentType] = useState("links");
   // custom hooks
-  const categories = useLoaderData<category[]>();
+  const { categories } = useLoaderData<LoaderTypes>();
   const categoryRefs = categories.map(() => {
     const thisCategory = useInView({
       threshold: 1,
@@ -94,7 +99,7 @@ function Index() {
 
   return (
     <div className="bg-white">
-      <AnnouncementBar></AnnouncementBar>
+      {/* <AnnouncementBar message={announcements[0].message} /> */}
       {/* Taco Delite Header */}
       <header className="header border-b-2 border-green-light" role="banner">
         <p className="font-primary-gris text-4xl text-green-primary md:text-6xl">
@@ -275,7 +280,7 @@ function Index() {
               </li>
               <li>
                 <a
-                  href="email: taco delite"
+                  href="mailto:tacodelitewestplano@gmail.com"
                   className="underline-effect in--hover text-green-dark duration-300 hover:text-dark"
                 >
                   tacodelitewestplano@gmail.com

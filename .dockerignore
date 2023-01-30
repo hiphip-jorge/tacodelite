@@ -6,3 +6,9 @@ fly.toml
 /.cache
 /public/build
 /build
+/.vscode
+.git
+Dockerfile
+.dockerignore
+prisma/data.db
+prisma/data.db-journal
